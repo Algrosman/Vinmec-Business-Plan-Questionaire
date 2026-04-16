@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Can Gio Hospital Planning Navigator</title>
+  <title>Can Gio Hospital Planning Navigator - Evidence-Backed Prototype</title>
   <style>
     :root{
       --bg:#f4f8fb;
@@ -35,7 +35,7 @@
       color:var(--text);
     }
     .container{
-      max-width:1400px;
+      max-width:1450px;
       margin:0 auto;
       padding:24px 18px 60px;
     }
@@ -62,7 +62,7 @@
     }
     .hero p{
       margin:0;
-      max-width:850px;
+      max-width:900px;
       color:rgba(255,255,255,0.9);
       line-height:1.5;
     }
@@ -79,7 +79,7 @@
       margin-bottom:12px;
     }
     .hero-meta{
-      min-width:260px;
+      min-width:280px;
       background:rgba(255,255,255,0.1);
       border:1px solid rgba(255,255,255,0.18);
       border-radius:16px;
@@ -133,7 +133,7 @@
       grid-template-columns:1fr;
       gap:18px;
     }
-    @media(min-width:1100px){
+    @media(min-width:1180px){
       .layout{
         grid-template-columns:320px 1fr;
       }
@@ -362,9 +362,44 @@
       margin-bottom:10px;
     }
 
+    .evidence-item, .research-item, .contradiction-item, .rec-item{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:12px;
+      background:#fff;
+    }
+
+    .source-label{
+      font-size:12px;
+      font-weight:700;
+      color:var(--cc-blue-dark);
+      margin-bottom:6px;
+      display:block;
+    }
+
+    .severity-high{color:var(--red); font-weight:700;}
+    .severity-medium{color:var(--amber); font-weight:700;}
+    .severity-low{color:var(--green); font-weight:700;}
+
+    .backend-box{
+      background:#f8fbff;
+      border:1px dashed #b7d3ea;
+      border-radius:14px;
+      padding:14px;
+      margin-top:12px;
+    }
+
+    .inline-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+
     .print-only{display:none}
     @media print{
-      .hero .nav, .sidebar, .footer-actions, .btn, .note{display:none !important}
+      .hero .nav, .sidebar, .footer-actions, .btn, .note, .backend-box{display:none !important}
       .print-only{display:block}
       body{background:white}
       .card,.hero{box-shadow:none}
@@ -380,15 +415,16 @@
           <div class="hero-badge">Cleveland Clinic Connected</div>
           <h1>Can Gio Hospital Planning Navigator</h1>
           <p>
-            A strategic planning tool to help define the vision, operating assumptions, clinical scope,
-            and business plan outline for Vinmec’s future hospital in Can Gio.
+            Evidence-backed prototype for Vinmec Can Gio hospital planning. This version includes a structured
+            knowledge base, contradiction detection, recommendation logic, and backend-ready hooks for search,
+            evidence, and research workflows.
           </p>
         </div>
         <div class="hero-meta">
-          <p><strong>Format:</strong> Single-file prototype</p>
-          <p><strong>Storage:</strong> Browser local storage</p>
-          <p><strong>Question set:</strong> 90 questions with branching</p>
-          <p><strong>Output:</strong> Executive summary and business plan outline</p>
+          <p><strong>Mode:</strong> Browser prototype</p>
+          <p><strong>Knowledge Base:</strong> Embedded from pasted source text</p>
+          <p><strong>Backend Hooks:</strong> Search, evidence, research, recommendations</p>
+          <p><strong>Use Case:</strong> Strategy workshops and model refinement</p>
         </div>
       </div>
 
@@ -396,7 +432,9 @@
         <button class="btn btn-primary" onclick="showPage('home')">Home</button>
         <button class="btn btn-secondary" onclick="showPage('questionnaire')">Questionnaire</button>
         <button class="btn btn-secondary" onclick="showPage('review')">Review Answers</button>
-        <button class="btn btn-secondary" onclick="showPage('outline')">Business Plan Output</button>
+        <button class="btn btn-secondary" onclick="showPage('evidence')">Evidence Library</button>
+        <button class="btn btn-secondary" onclick="showPage('research')">Research Queue</button>
+        <button class="btn btn-secondary" onclick="showPage('output')">Business Plan Output</button>
         <button class="btn btn-danger" onclick="resetAnswers()">Reset</button>
       </div>
     </div>
@@ -405,40 +443,38 @@
       <div class="home-grid">
         <div>
           <div class="card">
-            <div class="tag">Consulting-style prototype</div>
+            <div class="tag">Evidence-backed prototype</div>
             <h2>Welcome</h2>
             <p class="muted">
               This version is designed to support structured planning workshops between Cleveland Clinic Connected
-              and Vinmec stakeholders. It captures strategic, clinical, operational, workforce, digital, facilities,
-              and financial inputs, then translates them into a draft business plan output.
+              and Vinmec stakeholders. It uses an embedded knowledge base derived from the pasted Can Gio and Vietnam
+              market materials to generate more contextualized recommendations.
             </p>
             <div>
               <button class="btn btn-light" onclick="showPage('questionnaire')">Start Questionnaire</button>
-              <button class="btn btn-light" onclick="showPage('outline')">View Current Output</button>
+              <button class="btn btn-light" onclick="showPage('output')">View Current Output</button>
             </div>
           </div>
 
           <div class="summary-grid">
             <div class="summary-box decisions">
-              <h3>What this tool captures</h3>
+              <h3>What this version adds</h3>
               <ul>
-                <li>Strategic purpose and ambition</li>
-                <li>Market demand and patient segments</li>
-                <li>Clinical scope and service-line choices</li>
-                <li>Capacity, phasing, and growth assumptions</li>
-                <li>Operating model and workforce strategy</li>
-                <li>Digital, quality, facilities, and finance inputs</li>
+                <li>Source-backed knowledge base</li>
+                <li>Contradiction detection</li>
+                <li>Vietnam / Can Gio contextual logic</li>
+                <li>Evidence and citation display</li>
+                <li>Backend-ready research hooks</li>
               </ul>
             </div>
             <div class="summary-box next">
-              <h3>What this tool generates</h3>
+              <h3>What it is ready for later</h3>
               <ul>
-                <li>Executive summary</li>
-                <li>Business plan outline</li>
-                <li>Decision summary</li>
-                <li>Assumptions to validate</li>
-                <li>Open questions</li>
-                <li>Recommended next-step agenda</li>
+                <li>Live web search integration</li>
+                <li>Server-side evidence ingestion</li>
+                <li>Research task automation</li>
+                <li>Shared evidence library</li>
+                <li>Private deployment with backend APIs</li>
               </ul>
             </div>
           </div>
@@ -479,6 +515,17 @@
               </div>
             </div>
           </div>
+
+          <div class="card">
+            <div class="eyebrow">Backend-ready actions</div>
+            <div class="inline-actions">
+              <button class="btn btn-light" onclick="runBackendSearchDemo()">Search Evidence</button>
+              <button class="btn btn-light" onclick="runBackendResearchDemo()">Create Research Task</button>
+            </div>
+            <div class="backend-box small">
+              These buttons are wired to placeholder backend hooks. They will work fully once connected to real private APIs.
+            </div>
+          </div>
         </div>
 
         <div>
@@ -491,7 +538,7 @@
             </div>
             <div>
               <button class="btn btn-light" onclick="showPage('review')">Review Answers</button>
-              <button class="btn btn-light" onclick="showPage('outline')">View Output</button>
+              <button class="btn btn-light" onclick="showPage('output')">View Output</button>
             </div>
           </div>
         </div>
@@ -506,7 +553,43 @@
       </div>
     </div>
 
-    <div id="page-outline" class="page hidden">
+    <div id="page-evidence" class="page hidden">
+      <div class="card">
+        <h2>Evidence Library</h2>
+        <p class="muted">
+          Embedded evidence facts derived from the pasted source materials. In a full backend version,
+          this page would also include uploaded documents, extracted passages, and searchable evidence.
+        </p>
+        <div class="inline-actions">
+          <button class="btn btn-light" onclick="renderEvidence()">Refresh Evidence</button>
+          <button class="btn btn-light" onclick="runBackendSearchDemo()">Search External Evidence</button>
+        </div>
+        <div class="backend-box small">
+          Backend hook target: <code>/api/search</code> and <code>/api/evidence</code>
+        </div>
+        <div id="evidence-content" style="margin-top:16px;"></div>
+      </div>
+    </div>
+
+    <div id="page-research" class="page hidden">
+      <div class="card">
+        <h2>Research Queue</h2>
+        <p class="muted">
+          This queue identifies missing facts and suggested research tasks. In a full backend version,
+          these tasks would be persisted, assigned, and enriched with live search results.
+        </p>
+        <div class="inline-actions">
+          <button class="btn btn-light" onclick="renderResearchQueue()">Refresh Research Queue</button>
+          <button class="btn btn-light" onclick="runBackendResearchDemo()">Create Backend Research Task</button>
+        </div>
+        <div class="backend-box small">
+          Backend hook target: <code>/api/research</code>
+        </div>
+        <div id="research-content" style="margin-top:16px;"></div>
+      </div>
+    </div>
+
+    <div id="page-output" class="page hidden">
       <div class="card print-only">
         <h1>Can Gio Hospital Planning Navigator</h1>
         <p>Generated planning output</p>
@@ -535,241 +618,513 @@
       </div>
 
       <div class="card">
+        <h2>Contradictions and Tensions</h2>
+        <div id="contradictions-content"></div>
+      </div>
+
+      <div class="card">
         <h2>Business Plan Output</h2>
         <p class="muted">
-          This draft output is generated from questionnaire responses and is intended to support
-          strategic planning discussions and business plan development.
+          This draft output is generated from questionnaire responses and the embedded Can Gio / Vietnam knowledge base.
         </p>
         <div id="outline-content"></div>
         <button class="btn btn-light" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+
+      <div class="card">
+        <h2>Recommendation Cards</h2>
+        <div class="inline-actions">
+          <button class="btn btn-light" onclick="runBackendRecommendationDemo()">Run Backend Recommendation Hook</button>
+        </div>
+        <div class="backend-box small">
+          Backend hook target: <code>/api/recommendations</code>
+        </div>
+        <div id="recommendations-content" style="margin-top:16px;"></div>
       </div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = "can-gio-hospital-planner-v4";
+    const STORAGE_KEY = "can-gio-evidence-backed-prototype";
+
+    const knowledgeBase = [
+      {
+        id: "fact_001",
+        topic: "strategy",
+        geography: "Can Gio",
+        statement: "VMCG is planned as a 900-bed multi-specialty quaternary care hospital in the future Can Gio megacity.",
+        implication: "The hospital is being positioned as more than a community hospital and requires tertiary/quaternary operating assumptions.",
+        source: "Advisory Guide - Vinmec Can Gio Hospital Description",
+        confidence: "high"
+      },
+      {
+        id: "fact_002",
+        topic: "strategy",
+        geography: "Can Gio",
+        statement: "VMCG is intended to function simultaneously as a community-serving hospital, southern flagship, national COE destination, and medical tourism platform.",
+        implication: "The strategy is multi-role and vulnerable to internal tension unless phased and prioritized.",
+        source: "Advisory Guide - Strategic Context / Role in Southern Vietnam / Role in Vietnam",
+        confidence: "high"
+      },
+      {
+        id: "fact_003",
+        topic: "strategy",
+        geography: "Can Gio",
+        statement: "Vinmec leadership is leaning toward a smart luxury positioning rather than ultra-luxury exclusivity.",
+        implication: "Premium positioning should emphasize quality, privacy, technology, and elegance while remaining more accessible than Singapore or Thailand equivalents.",
+        source: "Advisory Guide - Intended Positioning",
+        confidence: "high"
+      },
+      {
+        id: "fact_004",
+        topic: "access",
+        geography: "Can Gio",
+        statement: "Current travel time from central HCMC to Can Gio is approximately 2.5 to 3 hours.",
+        implication: "Early patient capture from HCMC and international medical tourism should be modeled conservatively.",
+        source: "Advisory Guide - Access / Transportation Infrastructure",
+        confidence: "high"
+      },
+      {
+        id: "fact_005",
+        topic: "access",
+        geography: "Can Gio",
+        statement: "Major transport infrastructure improvements are planned, but several are expected after hospital opening.",
+        implication: "The opening business model must be resilient before full infrastructure maturity.",
+        source: "Advisory Guide - Access / Transportation Infrastructure",
+        confidence: "high"
+      },
+      {
+        id: "fact_006",
+        topic: "market",
+        geography: "Vietnam",
+        statement: "Vietnam’s healthcare market is growing strongly, supported by rising income, urbanization, and aging.",
+        implication: "Long-term demand for private and higher-acuity care is structurally favorable.",
+        source: "LEK report / Advisory Guide market section",
+        confidence: "high"
+      },
+      {
+        id: "fact_007",
+        topic: "disease_burden",
+        geography: "Vietnam",
+        statement: "Non-communicable diseases dominate the disease burden, with cardiology and oncology among the most important categories.",
+        implication: "Vinmec’s focus on cardiology and oncology is directionally aligned with national demand trends.",
+        source: "Advisory Guide / Medium market presentation",
+        confidence: "high"
+      },
+      {
+        id: "fact_008",
+        topic: "oncology",
+        geography: "Vietnam / Southern Vietnam",
+        statement: "Vietnam diagnoses approximately 180,000 new cancer cases annually, projected to reach 200,000 by 2030; the southern region accounts for roughly 42,000 new cases per year.",
+        implication: "Oncology is a credible flagship COE from a demand standpoint.",
+        source: "Advisory Guide - Oncology Strategic Context",
+        confidence: "high"
+      },
+      {
+        id: "fact_009",
+        topic: "patient_behavior",
+        geography: "Vietnam",
+        statement: "Patients often choose care based on trusted individual doctors rather than hospital brand, especially for lower-complexity care.",
+        implication: "Physician recruitment and visible clinical leadership are more important than architecture or branding alone.",
+        source: "Advisory Guide - Patient Perceptions / Medium market presentation",
+        confidence: "high"
+      },
+      {
+        id: "fact_010",
+        topic: "patient_behavior",
+        geography: "Vietnam",
+        statement: "Newly built hospitals face skepticism, even when backed by strong brands.",
+        implication: "Early trust-building and proof of clinical credibility are critical.",
+        source: "Advisory Guide - Patient Perceptions",
+        confidence: "high"
+      },
+      {
+        id: "fact_011",
+        topic: "payment",
+        geography: "Vietnam",
+        statement: "SHI covers approximately 93.35% of the population nationally.",
+        implication: "SHI is systemically important, but not necessarily a major revenue source for premium hospitals.",
+        source: "Vietnam Healthcare Payment Landscape",
+        confidence: "high"
+      },
+      {
+        id: "fact_012",
+        topic: "payment",
+        geography: "Vietnam",
+        statement: "Out-of-pocket spending remains high, at roughly 42% of healthcare expenditures.",
+        implication: "Patients still directly finance a large share of care, especially premium and non-covered services.",
+        source: "Vietnam Healthcare Payment Landscape / Advisory Guide",
+        confidence: "high"
+      },
+      {
+        id: "fact_013",
+        topic: "payment",
+        geography: "Premium private hospitals in Vietnam",
+        statement: "Vinmec premium hospitals derive only about 1–2% of revenue from SHI.",
+        implication: "SHI should be treated as a tactical channel, not the core premium revenue engine.",
+        source: "Vietnam Healthcare Payment Landscape",
+        confidence: "high"
+      },
+      {
+        id: "fact_014",
+        topic: "workforce",
+        geography: "Vietnam",
+        statement: "Vietnam faces shortages of qualified physicians and nurses, especially in high-acuity specialties.",
+        implication: "Workforce is a major constraint on service-line ambition and opening scope.",
+        source: "Advisory Guide / Medium market presentation",
+        confidence: "high"
+      },
+      {
+        id: "fact_015",
+        topic: "workforce",
+        geography: "VMCG",
+        statement: "Recruitment challenges are expected in transplant surgery, interventional cardiology, anesthesiology, radiology, critical care, and pathology.",
+        implication: "These specialties require early recruitment, international support, or phased activation.",
+        source: "Advisory Guide - Medical Staff and Nursing",
+        confidence: "high"
+      },
+      {
+        id: "fact_016",
+        topic: "medical_tourism",
+        geography: "Vietnam",
+        statement: "Inbound medical tourism is growing, but outbound medical tourism still exceeds inbound in value, especially for complex care.",
+        implication: "The more realistic near-term opportunity is outbound recapture, not large-scale inbound long-haul tourism.",
+        source: "Advisory Guide - Medical Tourism",
+        confidence: "high"
+      },
+      {
+        id: "fact_017",
+        topic: "medical_tourism",
+        geography: "Vietnam",
+        statement: "Oncology is the single most important driver of outbound medical tourism, followed by cardiology, orthopedics, neurology, IVF, and cosmetic procedures.",
+        implication: "Oncology and cardiology are logical anchors for outbound recapture strategy.",
+        source: "Advisory Guide - Medical Tourism",
+        confidence: "high"
+      },
+      {
+        id: "fact_018",
+        topic: "medical_tourism",
+        geography: "Can Gio",
+        statement: "Leadership recognizes that international patients are unlikely to exceed 10% in the early years, despite earlier internal targets of 40%.",
+        implication: "Early business plans should not rely on high international patient share.",
+        source: "Advisory Guide - Intended Positioning",
+        confidence: "high"
+      },
+      {
+        id: "fact_019",
+        topic: "competition",
+        geography: "HCMC",
+        statement: "FV is the strongest premium private benchmark competitor, especially in oncology and cardiology.",
+        implication: "VMCG must differentiate against FV on destination care, digital experience, bundled pathways, and COE credibility.",
+        source: "Advisory Guide - Competitor Analysis",
+        confidence: "high"
+      },
+      {
+        id: "fact_020",
+        topic: "competition",
+        geography: "HCMC",
+        statement: "Tam Anh is a major competitor in cardiology and surgery, driven by physician reputation, scale, and lower pricing.",
+        implication: "VMCG must compete on outcomes, experience, and physician strategy rather than price.",
+        source: "Advisory Guide - Competitor Analysis",
+        confidence: "high"
+      },
+      {
+        id: "fact_021",
+        topic: "competition",
+        geography: "Can Gio",
+        statement: "Tu Du 2 is a meaningful local competitor for lower-income and SHI-covered segments, especially in women’s health, pediatrics, emergency/ICU, and orthopedics.",
+        implication: "VMCG must define a local-access strategy and leakage-prevention plan.",
+        source: "Advisory Guide - Competitor Analysis",
+        confidence: "high"
+      },
+      {
+        id: "fact_022",
+        topic: "competition",
+        geography: "Public hospitals",
+        statement: "Public hospitals dominate complex case volume and physician trust, but are constrained by overcrowding and inconsistent patient experience.",
+        implication: "VMCG should position itself as the planned, premium, predictable alternative for complex care.",
+        source: "Advisory Guide - Competitor Analysis / Medium market presentation",
+        confidence: "high"
+      }
+    ];
 
     const questions = [
-      { id:"strategic_purpose", module:"1. Strategic Vision and Ambition", title:"What is the primary strategic purpose of the Can Gio hospital?", type:"single", options:[
-        {label:"Local access hospital", value:"local_access"},
-        {label:"Regional referral hospital", value:"regional_referral"},
-        {label:"Premium or international destination hospital", value:"premium_international"},
-        {label:"Mixed model", value:"mixed_model"}
-      ], help:"This defines the overall role, complexity, and positioning of the hospital."},
-      { id:"problem_to_solve", module:"1. Strategic Vision and Ambition", title:"What core problem is this hospital intended to solve?", type:"text"},
-      { id:"success_year_1", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 1?", type:"text"},
-      { id:"success_year_3", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 3?", type:"text"},
-      { id:"success_year_5", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 5?", type:"text"},
-      { id:"strategic_priorities", module:"1. Strategic Vision and Ambition", title:"Which strategic priorities are most important?", type:"multi", options:[
-        {label:"Improve access", value:"access"},
-        {label:"Strengthen Vinmec brand", value:"brand"},
-        {label:"Create a referral destination", value:"referral"},
-        {label:"Generate financial return", value:"financial_return"},
-        {label:"Support network integration", value:"network_integration"},
-        {label:"Launch advanced clinical programs", value:"advanced_programs"}
-      ]},
-      { id:"non_negotiables", module:"1. Strategic Vision and Ambition", title:"What are the top non-negotiable strategic priorities?", type:"text"},
-      { id:"tradeoffs", module:"1. Strategic Vision and Ambition", title:"What tradeoffs is leadership willing to make?", type:"text"},
-
-      { id:"target_segments", module:"2. Market and Patient Strategy", title:"Which patient segments are priorities?", type:"multi", options:[
-        {label:"Local residents", value:"local_residents"},
-        {label:"Ho Chi Minh City overflow", value:"hcmc_overflow"},
-        {label:"Regional referrals", value:"regional_referrals"},
-        {label:"International patients", value:"international_patients"},
-        {label:"Corporate or employer clients", value:"corporate_clients"}
-      ]},
-      { id:"catchment_area", module:"2. Market and Patient Strategy", title:"What is the expected primary and secondary catchment area?", type:"text"},
-      { id:"population_trends", module:"2. Market and Patient Strategy", title:"What demographic or population trends are most relevant?", type:"text"},
-      { id:"disease_burden", module:"2. Market and Patient Strategy", title:"What disease burden trends are most relevant?", type:"text"},
-      { id:"unmet_needs", module:"2. Market and Patient Strategy", title:"What unmet needs is this hospital intended to address?", type:"text"},
-      { id:"patient_leakage", module:"2. Market and Patient Strategy", title:"What patient leakage patterns exist today?", type:"text"},
-      { id:"competitors", module:"2. Market and Patient Strategy", title:"Which competitor hospitals or alternatives are most relevant?", type:"text"},
-      { id:"underserved_services", module:"2. Market and Patient Strategy", title:"Which services appear underserved in the market?", type:"text"},
-      { id:"premium_features", module:"2. Market and Patient Strategy", title:"Which premium experience features are essential?", type:"multi", condition:{questionId:"target_segments", includes:"international_patients"}, options:[
-        {label:"Private rooms", value:"private_rooms"},
-        {label:"Concierge navigation", value:"concierge"},
-        {label:"Executive health services", value:"executive_health"},
-        {label:"Dedicated premium clinics", value:"premium_clinics"},
-        {label:"Hospitality-oriented amenities", value:"hospitality"}
-      ]},
-      { id:"source_markets", module:"2. Market and Patient Strategy", title:"If international patients are a target, which source markets are most relevant?", type:"text", condition:{questionId:"target_segments", includes:"international_patients"}},
-
-      { id:"network_role", module:"3. Role in the Vinmec Network", title:"How should Can Gio complement the broader Vinmec network?", type:"text"},
-      { id:"network_integration", module:"3. Role in the Vinmec Network", title:"What level of integration with the broader Vinmec network is expected?", type:"single", options:[
-        {label:"Low", value:"low"},
-        {label:"Moderate", value:"moderate"},
-        {label:"High", value:"high"}
-      ]},
-      { id:"retain_vs_transfer", module:"3. Role in the Vinmec Network", title:"Which cases should be retained locally versus transferred elsewhere in the network?", type:"text"},
-      { id:"shared_services", module:"3. Role in the Vinmec Network", title:"Which services or functions should be shared across the network?", type:"text", condition:{questionId:"network_integration", equals:"high"}},
-      { id:"protocol_standardization", module:"3. Role in the Vinmec Network", title:"What degree of clinical protocol standardization is desired across the network?", type:"text"},
-      { id:"support_functions", module:"3. Role in the Vinmec Network", title:"Which support functions should be centralized versus local?", type:"text"},
-
-      { id:"experience_strategy", module:"4. Patient Experience and Positioning", title:"What patient experience should differentiate the hospital?", type:"text"},
-      { id:"service_tiers", module:"4. Patient Experience and Positioning", title:"Will there be differentiated service tiers?", type:"boolean"},
-      { id:"premium_tier_model", module:"4. Patient Experience and Positioning", title:"If differentiated service tiers are planned, how should they be structured?", type:"text", condition:{questionId:"service_tiers", equals:true}},
-      { id:"outpatient_access_model", module:"4. Patient Experience and Positioning", title:"What access model is envisioned for outpatient care?", type:"text"},
-      { id:"convenience_vs_complexity", module:"4. Patient Experience and Positioning", title:"How should the hospital balance convenience versus complexity of care?", type:"text"},
-      { id:"multilingual_support", module:"4. Patient Experience and Positioning", title:"Will multilingual patient support be required?", type:"boolean"},
-      { id:"concierge_model", module:"4. Patient Experience and Positioning", title:"Will concierge or navigation services be required?", type:"boolean"},
-
-      { id:"opening_services", module:"5. Clinical Scope and Service Lines", title:"Which service lines are essential at opening?", type:"multi", options:[
-        {label:"Emergency", value:"emergency"},
-        {label:"General medicine", value:"general_medicine"},
-        {label:"General surgery", value:"general_surgery"},
-        {label:"Cardiology", value:"cardiology"},
-        {label:"Oncology", value:"oncology"},
-        {label:"Orthopedics", value:"orthopedics"},
-        {label:"Women and children", value:"women_children"},
-        {label:"ICU or critical care", value:"icu"},
-        {label:"Diagnostics", value:"diagnostics"},
-        {label:"Rehabilitation", value:"rehabilitation"}
-      ]},
-      { id:"future_services", module:"5. Clinical Scope and Service Lines", title:"Which services are planned within 24 months after opening?", type:"text"},
-      { id:"anchor_service_lines", module:"5. Clinical Scope and Service Lines", title:"Which service lines are strategic anchors?", type:"text"},
-      { id:"volume_drivers", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be major volume drivers?", type:"text"},
-      { id:"brand_builders", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be brand builders?", type:"text"},
-      { id:"margin_contributors", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be margin contributors?", type:"text"},
-      { id:"specialized_programs", module:"5. Clinical Scope and Service Lines", title:"Will the hospital include highly specialized programs?", type:"boolean"},
-      { id:"advanced_programs", module:"5. Clinical Scope and Service Lines", title:"Which advanced programs are under consideration?", type:"multi", condition:{questionId:"specialized_programs", equals:true}, options:[
-        {label:"Cardiac surgery", value:"cardiac_surgery"},
-        {label:"Neurosciences", value:"neurosciences"},
-        {label:"Oncology center", value:"oncology_center"},
-        {label:"Transplant", value:"transplant"},
-        {label:"Advanced ICU", value:"advanced_icu"},
-        {label:"Interventional platform", value:"interventional_platform"}
-      ]},
-      { id:"cardiology_scope", module:"5. Clinical Scope and Service Lines", title:"What level of cardiology capability is envisioned?", type:"single", condition:{questionId:"opening_services", includes:"cardiology"}, options:[
-        {label:"Non-invasive only", value:"non_invasive"},
-        {label:"Interventional cardiology", value:"interventional"},
-        {label:"Interventional plus cardiac surgery aspiration", value:"interventional_plus_surgery"}
-      ]},
-      { id:"oncology_scope", module:"5. Clinical Scope and Service Lines", title:"What level of oncology capability is envisioned?", type:"single", condition:{questionId:"opening_services", includes:"oncology"}, options:[
-        {label:"Medical oncology only", value:"medical_only"},
-        {label:"Medical oncology plus infusion", value:"medical_plus_infusion"},
-        {label:"Comprehensive cancer center aspiration", value:"comprehensive_center"}
-      ]},
-      { id:"women_children_scope", module:"5. Clinical Scope and Service Lines", title:"What women and children services are envisioned?", type:"multi", condition:{questionId:"opening_services", includes:"women_children"}, options:[
-        {label:"Obstetrics", value:"obstetrics"},
-        {label:"Pediatrics", value:"pediatrics"},
-        {label:"NICU", value:"nicu"},
-        {label:"Pediatric subspecialties", value:"pediatric_subspecialties"}
-      ]},
-      { id:"ed_role", module:"5. Clinical Scope and Service Lines", title:"What emergency department role is envisioned?", type:"text"},
-      { id:"icu_capability", module:"5. Clinical Scope and Service Lines", title:"What ICU capability is required?", type:"text"},
-      { id:"or_platform", module:"5. Clinical Scope and Service Lines", title:"What operating room platform is required?", type:"text"},
-      { id:"diagnostics_platform", module:"5. Clinical Scope and Service Lines", title:"What diagnostics platform is required?", type:"text"},
-
-      { id:"bed_count", module:"6. Capacity and Growth", title:"What is the planned opening bed count?", type:"number"},
-      { id:"stabilized_bed_count", module:"6. Capacity and Growth", title:"What bed count is envisioned at stabilization or maturity?", type:"number"},
-      { id:"target_occupancy", module:"6. Capacity and Growth", title:"What is the target occupancy at stabilization (%)?", type:"number"},
-      { id:"alos_assumptions", module:"6. Capacity and Growth", title:"What average length of stay assumptions are being used?", type:"text"},
-      { id:"outpatient_inpatient_mix", module:"6. Capacity and Growth", title:"What outpatient-to-inpatient mix is desired?", type:"text"},
-      { id:"ed_volume", module:"6. Capacity and Growth", title:"What emergency department volume is expected?", type:"text"},
-      { id:"surgery_mix", module:"6. Capacity and Growth", title:"What surgery mix is expected?", type:"text"},
-      { id:"phased_development", module:"6. Capacity and Growth", title:"Will the campus be developed in phases?", type:"boolean"},
-      { id:"phase_plan", module:"6. Capacity and Growth", title:"What services are planned for phase 1 versus later phases?", type:"text", condition:{questionId:"phased_development", equals:true}},
-      { id:"expansion_triggers", module:"6. Capacity and Growth", title:"What triggers should determine later-phase expansion?", type:"text", condition:{questionId:"phased_development", equals:true}},
-      { id:"shell_space", module:"6. Capacity and Growth", title:"What shell space or future-proofing should be built initially?", type:"text", condition:{questionId:"phased_development", equals:true}},
-      { id:"growth_assumptions", module:"6. Capacity and Growth", title:"What are the key 3- to 5-year growth assumptions?", type:"text"},
-
-      { id:"physician_model", module:"7. Operating Model and Care Model", title:"What is the intended physician model?", type:"single", options:[
-        {label:"Employed", value:"employed"},
-        {label:"Affiliated", value:"affiliated"},
-        {label:"Mixed", value:"mixed"}
-      ]},
-      { id:"care_model", module:"7. Operating Model and Care Model", title:"What care model should define the hospital?", type:"multi", options:[
-        {label:"Inpatient-focused acute care", value:"inpatient_acute"},
-        {label:"Ambulatory-first strategy", value:"ambulatory_first"},
-        {label:"Multidisciplinary care pathways", value:"multidisciplinary"},
-        {label:"Virtual care integration", value:"virtual_care"},
-        {label:"Premium hospitality-oriented care", value:"premium_hospitality"}
-      ]},
-      { id:"protocolization", module:"7. Operating Model and Care Model", title:"What degree of protocolization is expected?", type:"text"},
-      { id:"periop_model", module:"7. Operating Model and Care Model", title:"What operating model is envisioned for perioperative services?", type:"text"},
-      { id:"discharge_model", module:"7. Operating Model and Care Model", title:"What discharge planning model is required?", type:"text"},
-      { id:"care_coordination", module:"7. Operating Model and Care Model", title:"What care coordination model is required?", type:"text"},
-      { id:"telehealth_role", module:"7. Operating Model and Care Model", title:"What role should telehealth play in the model?", type:"text"},
-      { id:"support_services_onsite", module:"7. Operating Model and Care Model", title:"What support services are required on site?", type:"text"},
-
-      { id:"staffing_shortages", module:"8. Workforce and Physician Enterprise", title:"Are there anticipated shortages in key specialties or roles?", type:"text"},
-      { id:"nursing_model", module:"8. Workforce and Physician Enterprise", title:"What nursing model is envisioned?", type:"text"},
-      { id:"app_model", module:"8. Workforce and Physician Enterprise", title:"What advanced practice provider model is envisioned?", type:"text"},
-      { id:"international_recruitment", module:"8. Workforce and Physician Enterprise", title:"Will international recruitment be required?", type:"boolean"},
-      { id:"international_recruitment_roles", module:"8. Workforce and Physician Enterprise", title:"Which specialties or leadership roles may require international recruitment?", type:"text", condition:{questionId:"international_recruitment", equals:true}},
-      { id:"training_partnerships", module:"8. Workforce and Physician Enterprise", title:"What training or academic partnerships are needed?", type:"text"},
-      { id:"leadership_roles", module:"8. Workforce and Physician Enterprise", title:"What leadership roles are critical before opening?", type:"text"},
-      { id:"productivity_assumptions", module:"8. Workforce and Physician Enterprise", title:"What workforce productivity assumptions are being used?", type:"text"},
-
-      { id:"digital_capabilities", module:"9. Digital and Innovation", title:"What digital capabilities are required at launch?", type:"multi", options:[
-        {label:"EMR", value:"emr"},
-        {label:"Telehealth", value:"telehealth"},
-        {label:"Command center", value:"command_center"},
-        {label:"Patient app", value:"patient_app"},
-        {label:"Digital front door", value:"digital_front_door"},
-        {label:"AI-enabled operations", value:"ai_ops"}
-      ]},
-      { id:"emr_strategy", module:"9. Digital and Innovation", title:"What EMR strategy is planned?", type:"text"},
-      { id:"interoperability", module:"9. Digital and Innovation", title:"What interoperability is required across Vinmec?", type:"text"},
-      { id:"patient_digital_tools", module:"9. Digital and Innovation", title:"What patient-facing digital tools are required?", type:"text"},
-      { id:"command_center_scope", module:"9. Digital and Innovation", title:"If a command center is planned, what operational domains should it manage?", type:"text", condition:{questionId:"digital_capabilities", includes:"command_center"}},
-      { id:"ai_use_cases", module:"9. Digital and Innovation", title:"Which AI use cases are highest priority?", type:"multi", condition:{questionId:"digital_capabilities", includes:"ai_ops"}, options:[
-        {label:"Capacity management", value:"capacity_management"},
-        {label:"Clinical documentation", value:"documentation"},
-        {label:"Radiology support", value:"radiology_support"},
-        {label:"Patient navigation", value:"patient_navigation"},
-        {label:"Predictive operations", value:"predictive_operations"}
-      ]},
-      { id:"cybersecurity", module:"9. Digital and Innovation", title:"What cybersecurity expectations apply?", type:"text"},
-      { id:"data_governance", module:"9. Digital and Innovation", title:"What data governance model is needed?", type:"text"},
-
-      { id:"quality_goals", module:"10. Quality and Accreditation", title:"What quality or accreditation goals are envisioned?", type:"multi", options:[
-        {label:"JCI", value:"jci"},
-        {label:"National accreditation", value:"national"},
-        {label:"Cleveland Clinic-aligned standards", value:"cc_aligned"},
-        {label:"Not yet defined", value:"not_defined"}
-      ]},
-      { id:"quality_ambition", module:"10. Quality and Accreditation", title:"What quality ambition should define the hospital?", type:"text"},
-      { id:"safety_culture", module:"10. Quality and Accreditation", title:"What safety culture expectations exist?", type:"text"},
-      { id:"priority_outcomes", module:"10. Quality and Accreditation", title:"What clinical outcomes should be prioritized?", type:"text"},
-      { id:"patient_experience_metrics", module:"10. Quality and Accreditation", title:"What patient experience metrics matter most?", type:"text"},
-      { id:"infection_prevention", module:"10. Quality and Accreditation", title:"What infection prevention standards are required?", type:"text"},
-      { id:"quality_governance", module:"10. Quality and Accreditation", title:"What governance model should oversee quality?", type:"text"},
-      { id:"jci_timing", module:"10. Quality and Accreditation", title:"If JCI is a goal, when is it expected?", type:"single", condition:{questionId:"quality_goals", includes:"jci"}, options:[
-        {label:"At opening", value:"opening"},
-        {label:"Within 1 to 2 years after opening", value:"post_opening_1_2_years"},
-        {label:"Longer-term aspiration", value:"long_term_aspiration"}
-      ]},
-
-      { id:"facility_priorities", module:"11. Facilities and Campus Planning", title:"What facility design priorities matter most?", type:"multi", options:[
-        {label:"Flexibility", value:"flexibility"},
-        {label:"Premium patient experience", value:"premium_experience"},
-        {label:"High-acuity capability", value:"high_acuity"},
-        {label:"Efficient throughput", value:"throughput"},
-        {label:"Future expansion", value:"future_expansion"}
-      ]},
-      { id:"design_principles", module:"11. Facilities and Campus Planning", title:"What facility design principles matter most?", type:"text"},
-      { id:"critical_adjacencies", module:"11. Facilities and Campus Planning", title:"What clinical adjacencies are most important?", type:"text"},
-      { id:"non_clinical_amenities", module:"11. Facilities and Campus Planning", title:"What non-clinical amenities are required?", type:"text"},
-      { id:"parking_access", module:"11. Facilities and Campus Planning", title:"What parking, transport, or access considerations matter most?", type:"text"},
-      { id:"sustainability_goals", module:"11. Facilities and Campus Planning", title:"What sustainability goals should be incorporated?", type:"text"},
-      { id:"facility_implications", module:"11. Facilities and Campus Planning", title:"What major facility or campus implications are already apparent?", type:"text"},
-
-      { id:"financial_objective", module:"12. Finance and Implementation", title:"What is the expected financial objective?", type:"single", options:[
-        {label:"Break-even quickly", value:"break_even"},
-        {label:"Long-term strategic investment", value:"long_term"},
-        {label:"Premium margin model", value:"premium_margin"},
-        {label:"Mixed objective", value:"mixed"}
-      ]},
-      { id:"return_expectations", module:"12. Finance and Implementation", title:"What return expectations exist by year 3 and year 5?", type:"text"},
-      { id:"capital_constraints", module:"12. Finance and Implementation", title:"What capital constraints apply?", type:"text"},
-      { id:"revenue_drivers", module:"12. Finance and Implementation", title:"What service lines or offerings are expected to be major revenue drivers?", type:"text"},
-      { id:"subsidized_services", module:"12. Finance and Implementation", title:"Which services are expected to require subsidy?", type:"text"},
-      { id:"payer_mix", module:"12. Finance and Implementation", title:"What payer mix assumptions are being used?", type:"text"},
-      { id:"ramp_up", module:"12. Finance and Implementation", title:"What ramp-up assumptions are being used?", type:"text"},
-      { id:"cost_pressures", module:"12. Finance and Implementation", title:"What cost pressures are most concerning?", type:"text"},
-      { id:"implementation_risks", module:"12. Finance and Implementation", title:"What are the biggest implementation risks?", type:"text"},
-      { id:"open_questions", module:"12. Finance and Implementation", title:"What key decisions remain unresolved?", type:"text"}
+      {
+        id: "primary_role_year_1_3",
+        module: "1. Strategic Prioritization",
+        title: "What should be the dominant role of VMCG in years 1 to 3?",
+        type: "single",
+        options: [
+          { label: "Community and local access anchor", value: "community_anchor" },
+          { label: "Southern referral flagship", value: "southern_flagship" },
+          { label: "Premium destination hospital", value: "premium_destination" },
+          { label: "Balanced mixed model", value: "balanced_mixed" }
+        ]
+      },
+      {
+        id: "primary_role_year_4_7",
+        module: "1. Strategic Prioritization",
+        title: "What should be the dominant role of VMCG in years 4 to 7?",
+        type: "single",
+        options: [
+          { label: "Community and local access anchor", value: "community_anchor" },
+          { label: "Southern referral flagship", value: "southern_flagship" },
+          { label: "Premium destination hospital", value: "premium_destination" },
+          { label: "National COE destination", value: "national_coe" },
+          { label: "Balanced mixed model", value: "balanced_mixed" }
+        ]
+      },
+      {
+        id: "strategic_tradeoffs",
+        module: "1. Strategic Prioritization",
+        title: "What strategic tradeoffs is leadership willing to make?",
+        type: "text"
+      },
+      {
+        id: "target_segments",
+        module: "2. Market and Patient Strategy",
+        title: "Which patient segments are the highest priority at opening?",
+        type: "multi",
+        options: [
+          { label: "Current Can Gio residents", value: "can_gio_residents" },
+          { label: "Future Vinhomes / megacity residents", value: "megacity_residents" },
+          { label: "HCMC affluent patients", value: "hcmc_affluent" },
+          { label: "Southern Vietnam referrals", value: "southern_referrals" },
+          { label: "Outbound Vietnamese recapture", value: "outbound_recapture" },
+          { label: "Cambodia / Laos inbound patients", value: "asean_inbound" },
+          { label: "Broader international patients", value: "broad_international" }
+        ]
+      },
+      {
+        id: "international_share_early",
+        module: "2. Market and Patient Strategy",
+        title: "What international patient share is assumed in years 1 to 3 (%)?",
+        type: "number"
+      },
+      {
+        id: "domestic_trust_strategy",
+        module: "2. Market and Patient Strategy",
+        title: "How will VMCG build domestic trust and referral credibility before scaling international demand?",
+        type: "text"
+      },
+      {
+        id: "transport_dependency",
+        module: "3. Access and Infrastructure",
+        title: "How dependent is the opening strategy on future transport infrastructure being completed on time?",
+        type: "single",
+        options: [
+          { label: "Low dependence", value: "low" },
+          { label: "Moderate dependence", value: "moderate" },
+          { label: "High dependence", value: "high" }
+        ]
+      },
+      {
+        id: "pre_infrastructure_strategy",
+        module: "3. Access and Infrastructure",
+        title: "What is the operating strategy before full transport maturity?",
+        type: "text"
+      },
+      {
+        id: "opening_services",
+        module: "4. Clinical Scope",
+        title: "Which service lines are essential at opening?",
+        type: "multi",
+        options: [
+          { label: "Emergency", value: "emergency" },
+          { label: "Internal medicine", value: "internal_medicine" },
+          { label: "General surgery", value: "general_surgery" },
+          { label: "Oncology", value: "oncology" },
+          { label: "Cardiology", value: "cardiology" },
+          { label: "Orthopedics", value: "orthopedics" },
+          { label: "OB/GYN", value: "obgyn" },
+          { label: "Pediatrics", value: "pediatrics" },
+          { label: "ICU", value: "icu" },
+          { label: "Diagnostics", value: "diagnostics" }
+        ]
+      },
+      {
+        id: "advanced_scope_opening",
+        module: "4. Clinical Scope",
+        title: "Which advanced programs are intended at opening?",
+        type: "multi",
+        options: [
+          { label: "Advanced oncology", value: "advanced_oncology" },
+          { label: "Advanced interventional cardiology", value: "advanced_cardiology" },
+          { label: "Cardiac surgery", value: "cardiac_surgery" },
+          { label: "Transplant", value: "transplant" },
+          { label: "Robotic surgery", value: "robotic_surgery" },
+          { label: "Advanced ICU", value: "advanced_icu" }
+        ]
+      },
+      {
+        id: "coe_priority",
+        module: "4. Clinical Scope",
+        title: "Which COEs should be prioritized for early brand credibility?",
+        type: "multi",
+        options: [
+          { label: "Oncology", value: "oncology" },
+          { label: "Cardiology", value: "cardiology" },
+          { label: "Orthopedics", value: "orthopedics" },
+          { label: "Women and children", value: "women_children" },
+          { label: "Executive health / wellness", value: "executive_health" }
+        ]
+      },
+      {
+        id: "bed_count_opening",
+        module: "5. Capacity and Phasing",
+        title: "What opening bed count is assumed?",
+        type: "number"
+      },
+      {
+        id: "phased_activation",
+        module: "5. Capacity and Phasing",
+        title: "Will service activation be phased even if the physical build is large at opening?",
+        type: "boolean"
+      },
+      {
+        id: "phase_logic",
+        module: "5. Capacity and Phasing",
+        title: "What is the logic for phase 1 versus later-phase activation?",
+        type: "text",
+        conditions: [{ type: "equals", questionId: "phased_activation", value: true }]
+      },
+      {
+        id: "network_integration",
+        module: "6. Vinmec Network Role",
+        title: "What level of integration with Vinmec Central Park and the southern cluster is intended?",
+        type: "single",
+        options: [
+          { label: "Low", value: "low" },
+          { label: "Moderate", value: "moderate" },
+          { label: "High", value: "high" }
+        ]
+      },
+      {
+        id: "central_park_split",
+        module: "6. Vinmec Network Role",
+        title: "How will service lines be split between Central Park and Can Gio?",
+        type: "text"
+      },
+      {
+        id: "referral_model",
+        module: "6. Vinmec Network Role",
+        title: "How will referrals be generated and governed?",
+        type: "text"
+      },
+      {
+        id: "payer_strategy",
+        module: "7. Payment and Payer Strategy",
+        title: "What should be the primary payer mix strategy at opening?",
+        type: "multi",
+        options: [
+          { label: "Out-of-pocket premium", value: "oop_premium" },
+          { label: "Private insurance", value: "private_insurance" },
+          { label: "Corporate contracts", value: "corporate_contracts" },
+          { label: "International insurance", value: "international_insurance" },
+          { label: "Selective SHI participation", value: "selective_shi" }
+        ]
+      },
+      {
+        id: "shi_role",
+        module: "7. Payment and Payer Strategy",
+        title: "What role should SHI play in the VMCG model?",
+        type: "single",
+        options: [
+          { label: "Minimal / tactical only", value: "minimal" },
+          { label: "Selective for local access and volume stabilization", value: "selective" },
+          { label: "Broad participation", value: "broad" }
+        ]
+      },
+      {
+        id: "insurance_ops",
+        module: "7. Payment and Payer Strategy",
+        title: "How mature is the planned insurance operations model (direct billing, claims, payer partnerships)?",
+        type: "single",
+        options: [
+          { label: "Not yet defined", value: "not_defined" },
+          { label: "Basic", value: "basic" },
+          { label: "Moderate", value: "moderate" },
+          { label: "Advanced", value: "advanced" }
+        ]
+      },
+      {
+        id: "workforce_readiness",
+        module: "8. Workforce and Talent",
+        title: "How confident is leadership in recruiting the required high-acuity workforce by opening?",
+        type: "single",
+        options: [
+          { label: "Low confidence", value: "low" },
+          { label: "Moderate confidence", value: "moderate" },
+          { label: "High confidence", value: "high" }
+        ]
+      },
+      {
+        id: "international_recruitment",
+        module: "8. Workforce and Talent",
+        title: "Will international recruitment be required for flagship specialties?",
+        type: "boolean"
+      },
+      {
+        id: "critical_workforce_gaps",
+        module: "8. Workforce and Talent",
+        title: "Which workforce gaps are most critical?",
+        type: "text"
+      },
+      {
+        id: "medical_tourism_strategy",
+        module: "9. Medical Tourism",
+        title: "What is the intended sequencing of the medical tourism strategy?",
+        type: "single",
+        options: [
+          { label: "Domestic credibility first, then regional/international", value: "domestic_first" },
+          { label: "Parallel domestic and international push", value: "parallel" },
+          { label: "International-first growth strategy", value: "international_first" }
+        ]
+      },
+      {
+        id: "tourism_services",
+        module: "9. Medical Tourism",
+        title: "Which tourism-linked services are priorities?",
+        type: "multi",
+        options: [
+          { label: "Executive health", value: "executive_health" },
+          { label: "Wellness screening", value: "wellness_screening" },
+          { label: "Rehabilitation / recovery stays", value: "rehab_recovery" },
+          { label: "Oncology second opinions", value: "oncology_second_opinions" },
+          { label: "Cardiology packages", value: "cardiology_packages" },
+          { label: "IVF / women’s health", value: "ivf_womens_health" }
+        ]
+      },
+      {
+        id: "quality_ambition",
+        module: "10. Quality and Experience",
+        title: "What quality/accreditation ambition is intended?",
+        type: "multi",
+        options: [
+          { label: "JCI soon after opening", value: "jci_soon" },
+          { label: "CC-aligned standards", value: "cc_aligned" },
+          { label: "Magnet nursing aspiration", value: "magnet" },
+          { label: "Outcome transparency and publication", value: "outcome_transparency" }
+        ]
+      },
+      {
+        id: "financial_objective",
+        module: "11. Financial Strategy",
+        title: "What is the primary financial objective?",
+        type: "single",
+        options: [
+          { label: "Break-even quickly", value: "break_even_quickly" },
+          { label: "Long-term strategic investment", value: "long_term_investment" },
+          { label: "Premium margin model", value: "premium_margin" },
+          { label: "Balanced strategic and financial objective", value: "balanced" }
+        ]
+      },
+      {
+        id: "key_risks",
+        module: "11. Financial Strategy",
+        title: "What are the biggest risks to the business plan?",
+        type: "text"
+      }
     ];
 
     const modules = [...new Set(questions.map(q => q.module))];
@@ -799,15 +1154,13 @@
     }
 
     function shouldShowQuestion(question) {
-      if (!question.condition) return true;
-      const dependency = answers[question.condition.questionId];
-      if (question.condition.equals !== undefined) {
-        return dependency === question.condition.equals;
-      }
-      if (question.condition.includes !== undefined) {
-        return Array.isArray(dependency) && dependency.includes(question.condition.includes);
-      }
-      return true;
+      if (!question.conditions) return true;
+      return question.conditions.every(condition => {
+        const dependency = answers[condition.questionId];
+        if (condition.type === "equals") return dependency === condition.value;
+        if (condition.type === "includes") return Array.isArray(dependency) && dependency.includes(condition.value);
+        return true;
+      });
     }
 
     function getVisibleQuestions() {
@@ -835,7 +1188,9 @@
       document.getElementById(`page-${page}`).classList.remove("hidden");
       if (page === "questionnaire") renderQuestionnaire();
       if (page === "review") renderReview();
-      if (page === "outline") renderOutline();
+      if (page === "evidence") renderEvidence();
+      if (page === "research") renderResearchQueue();
+      if (page === "output") renderOutput();
     }
 
     function renderModuleLists() {
@@ -894,7 +1249,7 @@
           <h3>Questionnaire Complete</h3>
           <p class="muted">You have completed all currently visible questions.</p>
           <button class="btn btn-light" onclick="showPage('review')">Review Answers</button>
-          <button class="btn btn-light" onclick="showPage('outline')">View Business Plan Output</button>
+          <button class="btn btn-light" onclick="showPage('output')">View Business Plan Output</button>
         `;
         progressText.textContent = "Complete";
         progressBar.style.width = "100%";
@@ -949,7 +1304,7 @@
         `).join("");
       }
 
-      html += `<div class="note"><strong>Tip:</strong> Responses save automatically in your browser.</div>`;
+      html += `<div class="note"><strong>Tip:</strong> Responses save automatically in your browser. The output is checked against the embedded Can Gio / Vietnam knowledge base.</div>`;
       card.innerHTML = html;
       renderModuleLists();
     }
@@ -958,14 +1313,14 @@
       answers[id] = value;
       saveAnswers();
       renderReview();
-      renderOutline();
+      renderOutput();
     }
 
     function updateNumberAnswer(id, value) {
       answers[id] = value === "" ? "" : Number(value);
       saveAnswers();
       renderReview();
-      renderOutline();
+      renderOutput();
     }
 
     function updateBooleanAnswer(id, value) {
@@ -1030,23 +1385,84 @@
       `).join("");
     }
 
-    function asArray(value) {
-      return Array.isArray(value) ? value : [];
-    }
+    function detectContradictions() {
+      const contradictions = [];
+      const intlShare = Number(answers.international_share_early || 0);
+      const payerStrategy = Array.isArray(answers.payer_strategy) ? answers.payer_strategy : [];
+      const advancedScope = Array.isArray(answers.advanced_scope_opening) ? answers.advanced_scope_opening : [];
+      const targetSegments = Array.isArray(answers.target_segments) ? answers.target_segments : [];
 
-    function asString(value) {
-      if (value === undefined || value === null || value === "") return "";
-      return String(value);
-    }
+      if (intlShare > 15) {
+        contradictions.push({
+          severity: "high",
+          title: "Early international volume assumption may be too aggressive",
+          description: "The embedded source base indicates that leadership expects international patients to remain below roughly 10% in the early years and that access constraints materially limit early international growth.",
+          source: "Advisory Guide - Intended Positioning / Access & Transportation"
+        });
+      }
 
-    function yesNoUnknown(value) {
-      if (value === true) return "Yes";
-      if (value === false) return "No";
-      return "To be defined";
-    }
+      if (
+        targetSegments.includes("can_gio_residents") &&
+        !payerStrategy.includes("selective_shi") &&
+        answers.shi_role === "minimal"
+      ) {
+        contradictions.push({
+          severity: "high",
+          title: "Local access ambition may conflict with limited SHI strategy",
+          description: "The source base emphasizes lower purchasing power among current Can Gio residents and the importance of local trust-building. A purely premium payment model may conflict with that role.",
+          source: "Advisory Guide - Service Area 1 / Payment Landscape"
+        });
+      }
 
-    function pushIf(arr, condition, text) {
-      if (condition && text) arr.push(text);
+      if (
+        advancedScope.length > 0 &&
+        answers.workforce_readiness === "low" &&
+        answers.international_recruitment !== true
+      ) {
+        contradictions.push({
+          severity: "high",
+          title: "Advanced opening scope may be under-supported by workforce readiness",
+          description: "The source base identifies shortages in transplant surgery, interventional cardiology, anesthesiology, radiology, critical care, and pathology. Advanced scope without a strong workforce plan is risky.",
+          source: "Advisory Guide - Medical Staff and Nursing / Workforce sections"
+        });
+      }
+
+      if (
+        answers.primary_role_year_4_7 === "southern_flagship" &&
+        answers.network_integration === "low"
+      ) {
+        contradictions.push({
+          severity: "high",
+          title: "Referral flagship ambition conflicts with low network integration",
+          description: "The source base repeatedly emphasizes Central Park and southern cluster integration as critical to Can Gio’s referral role.",
+          source: "Advisory Guide - Role in Southern Vietnam / Strategic Analysis"
+        });
+      }
+
+      if (
+        answers.financial_objective === "break_even_quickly" &&
+        advancedScope.length > 0 &&
+        Array.isArray(answers.quality_ambition) &&
+        answers.quality_ambition.includes("jci_soon")
+      ) {
+        contradictions.push({
+          severity: "medium",
+          title: "Rapid break-even may conflict with flagship quality and advanced scope ambitions",
+          description: "The source base suggests that early investment in staffing, quality infrastructure, and advanced services may compress margins during ramp-up.",
+          source: "Advisory Guide - Financial Analysis / Quality / Workforce"
+        });
+      }
+
+      if (answers.medical_tourism_strategy === "international_first") {
+        contradictions.push({
+          severity: "high",
+          title: "International-first strategy conflicts with document-backed phased tourism logic",
+          description: "The source base recommends domestic credibility and outbound recapture before broader international expansion.",
+          source: "Advisory Guide - Medical Tourism / Strategic Takeaway"
+        });
+      }
+
+      return contradictions;
     }
 
     function generateDecisionSummary() {
@@ -1055,275 +1471,325 @@
       const open = [];
       const next = [];
 
-      const strategicPurpose = answers.strategic_purpose;
-      const targetSegments = asArray(answers.target_segments);
-      const openingServices = asArray(answers.opening_services);
-      const advancedPrograms = asArray(answers.advanced_programs);
-      const digital = asArray(answers.digital_capabilities);
-      const quality = asArray(answers.quality_goals);
-      const facilities = asArray(answers.facility_priorities);
-      const careModel = asArray(answers.care_model);
+      const targetSegments = Array.isArray(answers.target_segments) ? answers.target_segments : [];
+      const openingServices = Array.isArray(answers.opening_services) ? answers.opening_services : [];
+      const coePriority = Array.isArray(answers.coe_priority) ? answers.coe_priority : [];
+      const payerStrategy = Array.isArray(answers.payer_strategy) ? answers.payer_strategy : [];
 
-      pushIf(decisions, strategicPurpose, `Strategic purpose selected: ${formatValueLabel(strategicPurpose)}.`);
-      pushIf(decisions, targetSegments.length, `Priority patient segments identified: ${targetSegments.map(formatValueLabel).join(", ")}.`);
-      pushIf(decisions, openingServices.length, `Opening clinical platform includes: ${openingServices.map(formatValueLabel).join(", ")}.`);
-      pushIf(decisions, answers.bed_count, `Opening bed count assumption: ${answers.bed_count}.`);
-      pushIf(decisions, answers.stabilized_bed_count, `Stabilized bed count assumption: ${answers.stabilized_bed_count}.`);
-      pushIf(decisions, answers.physician_model, `Physician model selected: ${formatValueLabel(answers.physician_model)}.`);
-      pushIf(decisions, answers.network_integration, `Network integration level selected: ${formatValueLabel(answers.network_integration)}.`);
-      pushIf(decisions, answers.financial_objective, `Financial objective selected: ${formatValueLabel(answers.financial_objective)}.`);
-      pushIf(decisions, careModel.length, `Care model themes identified: ${careModel.map(formatValueLabel).join(", ")}.`);
+      if (answers.primary_role_year_1_3) decisions.push(`Years 1–3 role selected: ${formatValueLabel(answers.primary_role_year_1_3)}.`);
+      if (answers.primary_role_year_4_7) decisions.push(`Years 4–7 role selected: ${formatValueLabel(answers.primary_role_year_4_7)}.`);
+      if (targetSegments.length) decisions.push(`Opening target segments identified: ${targetSegments.map(formatValueLabel).join(", ")}.`);
+      if (openingServices.length) decisions.push(`Opening services identified: ${openingServices.map(formatValueLabel).join(", ")}.`);
+      if (coePriority.length) decisions.push(`Early COE priorities identified: ${coePriority.map(formatValueLabel).join(", ")}.`);
+      if (answers.bed_count_opening) decisions.push(`Opening bed count assumption: ${answers.bed_count_opening}.`);
+      if (payerStrategy.length) decisions.push(`Primary payer strategy includes: ${payerStrategy.map(formatValueLabel).join(", ")}.`);
 
-      if (!strategicPurpose) open.push("The overall strategic purpose of the hospital still needs to be defined.");
-      if (!targetSegments.length) open.push("Priority patient segments have not yet been clearly defined.");
-      if (!openingServices.length) open.push("Opening service lines have not yet been clearly defined.");
-      if (!answers.bed_count) open.push("Opening bed count remains undefined.");
-      if (!answers.financial_objective) open.push("Financial objective remains undefined.");
-      if (!answers.open_questions) open.push("A formal list of unresolved decisions has not yet been documented.");
+      if (!answers.primary_role_year_1_3) open.push("The dominant role of VMCG in years 1–3 is not yet clearly defined.");
+      if (!answers.primary_role_year_4_7) open.push("The dominant role of VMCG in years 4–7 is not yet clearly defined.");
+      if (!answers.pre_infrastructure_strategy) open.push("The pre-infrastructure operating strategy is not yet clearly defined.");
+      if (!answers.central_park_split) open.push("The service-line split with Central Park is not yet clearly defined.");
+      if (!answers.referral_model) open.push("The referral model is not yet clearly defined.");
+      if (!answers.key_risks) open.push("The major business plan risks are not yet clearly documented.");
 
-      if (strategicPurpose === "premium_international") {
-        assumptions.push("The market can support a premium or international positioning.");
-        assumptions.push("The organization can operationalize hospitality-oriented workflows and differentiated service standards.");
-        next.push("Validate the business case for premium and international patient demand.");
+      if (Number(answers.international_share_early || 0) > 0) {
+        assumptions.push(`Early international patient share assumption: ${answers.international_share_early}%. This should be validated against the source base and infrastructure readiness.`);
       }
 
-      if (strategicPurpose === "regional_referral") {
-        assumptions.push("Referral demand and specialist recruitment can support a higher-acuity referral model.");
-        next.push("Define referral pathways, transfer criteria, and anchor specialties for the referral strategy.");
+      if (answers.transport_dependency === "high") {
+        assumptions.push("The opening strategy appears highly dependent on future transport infrastructure being completed on time.");
+        next.push("Develop a more resilient pre-infrastructure operating model with conservative ramp assumptions.");
       }
 
-      if (answers.phased_development === true) {
-        decisions.push("A phased development approach is indicated.");
-        assumptions.push("Capital timing, demand ramp, and workforce availability support phased activation.");
-        next.push("Define phase 1 versus later-phase services and establish expansion triggers.");
+      if (answers.medical_tourism_strategy === "international_first") {
+        assumptions.push("The strategy assumes international demand can be activated early despite source-based caution.");
+        next.push("Re-evaluate tourism sequencing toward domestic credibility and outbound recapture first.");
       }
 
-      if (quality.includes("jci")) {
-        decisions.push("JCI is included as an accreditation ambition.");
-        assumptions.push("Leadership is prepared to invest in the governance, training, and process rigor required for JCI readiness.");
-        next.push("Define whether JCI is expected at opening or after stabilization and build a readiness workplan.");
+      if (answers.workforce_readiness === "low") {
+        assumptions.push("Workforce readiness appears to be a major constraint on opening scope.");
+        next.push("Prioritize a workforce mitigation plan for flagship specialties and opening-critical functions.");
       }
 
-      if (targetSegments.includes("international_patients")) {
-        assumptions.push("International patient demand is sufficient to justify related infrastructure and service design.");
-        next.push("Clarify target international source markets and minimum viable international patient services.");
-      }
-
-      if (digital.includes("ai_ops")) {
-        assumptions.push("Data, governance, and operational maturity will be sufficient to support AI-enabled use cases.");
-        next.push("Prioritize specific AI use cases and define implementation sequencing.");
-      }
-
-      if (facilities.includes("future_expansion")) {
-        assumptions.push("Future growth is likely enough to justify expansion-ready facility design.");
-        next.push("Translate growth assumptions into shell-space and infrastructure planning requirements.");
-      }
-
-      if (advancedPrograms.length > 0) {
-        decisions.push(`Advanced programs under consideration: ${advancedPrograms.map(formatValueLabel).join(", ")}.`);
-        assumptions.push("Advanced programs can be supported by demand, workforce, and capital realities.");
-        next.push("Assess which advanced programs are realistic for opening versus later maturity.");
-      }
-
-      if (asString(answers.implementation_risks)) {
-        decisions.push("Implementation risks have been identified by stakeholders.");
-      } else {
-        open.push("Implementation risks need to be documented more explicitly.");
-      }
-
-      if (asString(answers.staffing_shortages)) {
-        assumptions.push("Workforce shortages can be mitigated through recruitment, training, or phased activation.");
-      } else {
-        open.push("Potential workforce shortages have not yet been fully assessed.");
+      if (answers.network_integration === "low" && answers.primary_role_year_4_7 === "southern_flagship") {
+        assumptions.push("Referral-center ambitions may be under-supported by current network integration assumptions.");
+        next.push("Define a stronger Central Park and southern cluster integration model.");
       }
 
       if (next.length === 0) {
-        next.push("Complete the remaining questionnaire sections and validate the current assumptions.");
+        next.push("Validate the current assumptions against the embedded evidence base and refine the opening model.");
       }
 
       return { decisions, assumptions, open, next };
     }
 
+    function buildRecommendations() {
+      const recs = [];
+      const contradictions = detectContradictions();
+      const targetSegments = Array.isArray(answers.target_segments) ? answers.target_segments : [];
+      const coePriority = Array.isArray(answers.coe_priority) ? answers.coe_priority : [];
+      const payerStrategy = Array.isArray(answers.payer_strategy) ? answers.payer_strategy : [];
+
+      if (answers.medical_tourism_strategy === "domestic_first") {
+        recs.push({
+          title: "Phase medical tourism around domestic credibility first",
+          body: "The current strategy is aligned with the strongest document-backed logic: first build local and southern referral credibility, then recapture outbound Vietnamese demand, then selectively expand regional inbound demand.",
+          citations: [
+            "Advisory Guide - Medical Tourism Strategic Takeaway",
+            "Advisory Guide - Intended Positioning",
+            "Advisory Guide - Implications for VMCG"
+          ]
+        });
+      }
+
+      if (coePriority.includes("oncology") || coePriority.includes("cardiology")) {
+        recs.push({
+          title: "Use oncology and cardiology as early flagship credibility engines",
+          body: "The source base strongly supports oncology and cardiology as the most defensible early COEs because they align with national disease burden, outbound medical tourism leakage, and Vinmec’s intended premium tertiary positioning.",
+          citations: [
+            "Advisory Guide - Oncology Strategic Context",
+            "Advisory Guide - Cardiovascular Center of Excellence",
+            "Advisory Guide - Medical Tourism"
+          ]
+        });
+      }
+
+      if (targetSegments.includes("hcmc_affluent")) {
+        recs.push({
+          title: "Compete for HCMC affluent patients through physician credibility and predictable access",
+          body: "The source base indicates that HCMC affluent patients are highly sensitive to physician reputation, outcomes, and convenience. VMCG should compete through visible clinical leaders, second-opinion pathways, digital scheduling, and a predictable, lower-friction experience.",
+          citations: [
+            "Advisory Guide - Patient Perceptions",
+            "Advisory Guide - Competitor Analysis",
+            "Patient Journey Mapping section"
+          ]
+        });
+      }
+
+      if (payerStrategy.includes("selective_shi")) {
+        recs.push({
+          title: "Use SHI tactically rather than as the core premium revenue engine",
+          body: "The source base suggests that SHI can support local access and selected volume stabilization, but premium hospitals in Vietnam remain primarily OOP and PHI-driven. SHI participation should therefore be selective and operationally disciplined.",
+          citations: [
+            "Vietnam Healthcare Payment Landscape",
+            "Advisory Guide - Financial, Legal & Compliance",
+            "Service Area economics sections"
+          ]
+        });
+      }
+
+      contradictions.forEach(c => {
+        recs.push({
+          title: c.title,
+          body: c.description,
+          citations: [c.source]
+        });
+      });
+
+      return recs;
+    }
+
     function buildNarrativeSections() {
-      const strategicPurpose = answers.strategic_purpose;
-      const targetSegments = asArray(answers.target_segments);
-      const priorities = asArray(answers.strategic_priorities);
-      const openingServices = asArray(answers.opening_services);
-      const advancedPrograms = asArray(answers.advanced_programs);
-      const digital = asArray(answers.digital_capabilities);
-      const aiUseCases = asArray(answers.ai_use_cases);
-      const quality = asArray(answers.quality_goals);
-      const facilities = asArray(answers.facility_priorities);
-      const careModel = asArray(answers.care_model);
+      const contradictions = detectContradictions();
+      const targetSegments = Array.isArray(answers.target_segments) ? answers.target_segments : [];
+      const openingServices = Array.isArray(answers.opening_services) ? answers.opening_services : [];
+      const coePriority = Array.isArray(answers.coe_priority) ? answers.coe_priority : [];
+      const payerStrategy = Array.isArray(answers.payer_strategy) ? answers.payer_strategy : [];
+      const qualityAmbition = Array.isArray(answers.quality_ambition) ? answers.quality_ambition : [];
 
       const sections = [];
-
-      let strategySummary = "The strategic role of the hospital remains to be fully defined.";
-      if (strategicPurpose === "local_access") {
-        strategySummary = "The emerging concept suggests a hospital focused primarily on improving local access to essential and moderately complex care.";
-      } else if (strategicPurpose === "regional_referral") {
-        strategySummary = "The emerging concept suggests a hospital designed to serve as a higher-acuity referral asset with meaningful specialist depth and transfer capability.";
-      } else if (strategicPurpose === "premium_international") {
-        strategySummary = "The emerging concept suggests a hospital positioned not only as a care delivery asset, but also as a premium brand and destination-care platform.";
-      } else if (strategicPurpose === "mixed_model") {
-        strategySummary = "The emerging concept suggests a mixed-model hospital balancing access, referral capability, and premium positioning.";
-      }
 
       sections.push({
         title: "Executive Summary",
         bullets: [
-          strategySummary,
-          priorities.length ? `Strategic priorities identified to date include ${priorities.map(formatValueLabel).join(", ")}.` : "Strategic priorities still need to be clarified and ranked.",
-          targetSegments.length ? `Priority patient segments include ${targetSegments.map(formatValueLabel).join(", ")}.` : "Priority patient segments have not yet been clearly defined.",
-          openingServices.length ? `The opening clinical platform currently appears to include ${openingServices.map(formatValueLabel).join(", ")}.` : "The opening clinical platform remains to be defined."
+          answers.primary_role_year_1_3
+            ? `The current opening-stage strategy suggests that VMCG is intended to function primarily as a ${formatValueLabel(answers.primary_role_year_1_3)} in years 1 to 3.`
+            : "The dominant role of VMCG in years 1 to 3 remains to be clarified.",
+          answers.primary_role_year_4_7
+            ? `Over the medium term, the hospital is expected to evolve toward a ${formatValueLabel(answers.primary_role_year_4_7)} in years 4 to 7.`
+            : "The medium-term role of VMCG remains to be clarified.",
+          targetSegments.length
+            ? `Priority opening patient segments include ${targetSegments.map(formatValueLabel).join(", ")}.`
+            : "Priority opening patient segments have not yet been clearly defined.",
+          contradictions.length
+            ? `The current response set contains ${contradictions.length} notable strategic or operating tensions that should be addressed before finalizing the business plan.`
+            : "No major contradictions have been detected in the current response set."
+        ],
+        citations: [
+          "Advisory Guide - Strategic Context",
+          "Advisory Guide - Executive Summary"
         ]
       });
 
       sections.push({
-        title: "Strategic Case for the Hospital",
+        title: "Strategic Positioning and Role",
         bullets: [
-          asString(answers.problem_to_solve) ? `The hospital is intended to address the following core challenge: ${answers.problem_to_solve}.` : "The core problem this hospital is intended to solve still needs to be articulated.",
-          asString(answers.success_year_1) ? `Year 1 success is currently described as: ${answers.success_year_1}.` : "Year 1 success criteria have not yet been defined.",
-          asString(answers.success_year_3) ? `Year 3 success is currently described as: ${answers.success_year_3}.` : "Year 3 success criteria have not yet been defined.",
-          asString(answers.success_year_5) ? `Year 5 success is currently described as: ${answers.success_year_5}.` : "Year 5 success criteria have not yet been defined.",
-          asString(answers.non_negotiables) ? `Non-negotiable strategic priorities include: ${answers.non_negotiables}.` : "Non-negotiable strategic priorities still need to be documented."
+          "The embedded source base indicates that VMCG is expected to serve multiple roles simultaneously: local access anchor, southern flagship, national COE destination, and medical tourism platform. This creates strategic upside but also requires explicit prioritization by phase.",
+          answers.strategic_tradeoffs
+            ? `Leadership tradeoffs currently described include: ${answers.strategic_tradeoffs}.`
+            : "Leadership tradeoffs have not yet been clearly documented.",
+          "The source base also indicates that Vinmec leadership is leaning toward a smart luxury positioning rather than ultra-luxury exclusivity, suggesting that the hospital should combine premium quality, privacy, and technology with a more accessible value proposition than Singapore or Thailand equivalents."
+        ],
+        citations: [
+          "Advisory Guide - Intended Positioning",
+          "Advisory Guide - Strategic Analysis"
         ]
       });
 
       sections.push({
-        title: "Market Opportunity and Patient Strategy",
+        title: "Market and Patient Strategy",
         bullets: [
-          asString(answers.catchment_area) ? `The expected catchment area is described as: ${answers.catchment_area}.` : "The primary and secondary catchment area still needs to be defined.",
-          asString(answers.population_trends) ? `Relevant population trends include: ${answers.population_trends}.` : "Relevant population trends have not yet been documented.",
-          asString(answers.disease_burden) ? `Relevant disease burden trends include: ${answers.disease_burden}.` : "Relevant disease burden trends have not yet been documented.",
-          asString(answers.unmet_needs) ? `Unmet needs identified include: ${answers.unmet_needs}.` : "Specific unmet needs still need to be documented.",
-          asString(answers.patient_leakage) ? `Patient leakage patterns are described as: ${answers.patient_leakage}.` : "Patient leakage patterns have not yet been documented.",
-          asString(answers.competitors) ? `Relevant competitors or alternatives include: ${answers.competitors}.` : "The competitive landscape has not yet been clearly documented.",
-          targetSegments.includes("international_patients") && asArray(answers.premium_features).length
-            ? `Premium or international patient features under consideration include ${asArray(answers.premium_features).map(formatValueLabel).join(", ")}.`
-            : targetSegments.includes("international_patients")
-            ? "International patients are included in the target segment mix, but the premium service model remains to be defined."
-            : "No explicit international patient service model has been identified at this stage."
+          targetSegments.length
+            ? `The current target-segment strategy emphasizes ${targetSegments.map(formatValueLabel).join(", ")}.`
+            : "The target-segment strategy remains underdeveloped.",
+          answers.domestic_trust_strategy
+            ? `The domestic trust-building strategy is currently described as: ${answers.domestic_trust_strategy}.`
+            : "A domestic trust-building strategy should be defined before aggressive regional or international expansion is assumed.",
+          "The source base indicates that Vietnamese patients are often physician-led rather than hospital-led in their decision-making, especially for lower-complexity care, while complex care decisions are more brand- and specialty-reputation-driven."
+        ],
+        citations: [
+          "Advisory Guide - Patient Perceptions",
+          "Medium Vietnam market presentation"
         ]
       });
 
       sections.push({
-        title: "Role Within the Vinmec Network",
+        title: "Access and Infrastructure Implications",
         bullets: [
-          asString(answers.network_role) ? `The hospital’s intended role within the broader Vinmec network is described as: ${answers.network_role}.` : "The hospital’s role within the broader Vinmec network still needs to be defined.",
-          answers.network_integration ? `The selected level of network integration is ${formatValueLabel(answers.network_integration)}.` : "The desired level of network integration remains undefined.",
-          asString(answers.retain_vs_transfer) ? `Case retention versus transfer assumptions are described as: ${answers.retain_vs_transfer}.` : "Case retention versus transfer assumptions have not yet been defined.",
-          asString(answers.shared_services) ? `Shared services or functions under consideration include: ${answers.shared_services}.` : answers.network_integration === "high" ? "High integration is envisioned, but the shared-service model still needs to be specified." : "No specific shared-service model has yet been documented.",
-          asString(answers.support_functions) ? `Support function design assumptions include: ${answers.support_functions}.` : "The split between centralized and local support functions remains undefined."
+          "The source base identifies access as one of the most important structural constraints on VMCG’s early performance. Current travel time from central HCMC to Can Gio is approximately 2.5 to 3 hours.",
+          answers.transport_dependency
+            ? `Leadership currently rates opening-strategy dependence on future transport infrastructure as ${formatValueLabel(answers.transport_dependency)}.`
+            : "Dependence on future transport infrastructure has not yet been clearly assessed.",
+          answers.pre_infrastructure_strategy
+            ? `The pre-infrastructure operating strategy is described as: ${answers.pre_infrastructure_strategy}.`
+            : "A resilient pre-infrastructure operating strategy should be defined to avoid overdependence on delayed transport projects."
+        ],
+        citations: [
+          "Advisory Guide - Access / Transportation Infrastructure",
+          "Advisory Guide - Implications for VMCG"
         ]
       });
 
       sections.push({
-        title: "Patient Experience and Positioning",
+        title: "Clinical Program and COE Strategy",
         bullets: [
-          asString(answers.experience_strategy) ? `The intended differentiating patient experience is described as: ${answers.experience_strategy}.` : "The intended differentiating patient experience has not yet been clearly defined.",
-          `Differentiated service tiers: ${yesNoUnknown(answers.service_tiers)}.`,
-          asString(answers.premium_tier_model) ? `The premium or differentiated service-tier model is described as: ${answers.premium_tier_model}.` : answers.service_tiers === true ? "Differentiated service tiers are planned, but the structure remains undefined." : "No differentiated service-tier model has been specified.",
-          asString(answers.outpatient_access_model) ? `The outpatient access model is described as: ${answers.outpatient_access_model}.` : "The outpatient access model remains undefined."
+          openingServices.length
+            ? `Opening services currently include ${openingServices.map(formatValueLabel).join(", ")}.`
+            : "Opening services have not yet been clearly defined.",
+          coePriority.length
+            ? `Early COE priorities include ${coePriority.map(formatValueLabel).join(", ")}.`
+            : "Early COE priorities remain undefined.",
+          "The source base strongly supports oncology and cardiology as the most defensible early flagship COEs due to disease burden, outbound medical tourism leakage, and Vinmec’s intended premium tertiary positioning.",
+          Array.isArray(answers.advanced_scope_opening) && answers.advanced_scope_opening.length
+            ? `Advanced opening scope currently includes ${answers.advanced_scope_opening.map(formatValueLabel).join(", ")}.`
+            : "Advanced opening scope has not yet been clearly defined."
+        ],
+        citations: [
+          "Advisory Guide - Service Lines and COEs",
+          "Advisory Guide - Oncology",
+          "Advisory Guide - Cardiology"
         ]
       });
 
       sections.push({
-        title: "Clinical Program Strategy",
+        title: "Capacity, Phasing, and Network Integration",
         bullets: [
-          openingServices.length ? `The emerging opening clinical platform appears to center on ${openingServices.map(formatValueLabel).join(", ")}.` : "Opening service lines have not yet been clearly defined.",
-          asString(answers.future_services) ? `Services planned after opening include: ${answers.future_services}.` : "Near-term post-opening service expansion has not yet been defined.",
-          asString(answers.anchor_service_lines) ? `Strategic anchor service lines include: ${answers.anchor_service_lines}.` : "Strategic anchor service lines remain undefined.",
-          asString(answers.volume_drivers) ? `Expected volume drivers include: ${answers.volume_drivers}.` : "Expected volume drivers have not yet been defined.",
-          asString(answers.brand_builders) ? `Expected brand-building service lines include: ${answers.brand_builders}.` : "Expected brand-building service lines have not yet been defined.",
-          answers.specialized_programs === true ? "Highly specialized programs are under consideration, suggesting a potentially more ambitious maturity-state clinical model." :
-          answers.specialized_programs === false ? "No highly specialized programs are currently indicated, suggesting a more focused opening scope." :
-          "The role of highly specialized programs has not yet been determined.",
-          advancedPrograms.length ? `Advanced programs under consideration include ${advancedPrograms.map(formatValueLabel).join(", ")}.` : "No advanced programs have yet been specified.",
-          answers.cardiology_scope ? `Cardiology capability is currently envisioned at the following level: ${formatValueLabel(answers.cardiology_scope)}.` : openingServices.includes("cardiology") ? "Cardiology is included in the opening platform, but the intended level of capability remains undefined." : "Cardiology is not currently identified as a defining opening service line.",
-          answers.oncology_scope ? `Oncology capability is currently envisioned at the following level: ${formatValueLabel(answers.oncology_scope)}.` : openingServices.includes("oncology") ? "Oncology is included in the opening platform, but the intended level of capability remains undefined." : "Oncology is not currently identified as a defining opening service line."
+          answers.bed_count_opening
+            ? `The current opening bed count assumption is ${answers.bed_count_opening}.`
+            : "The opening bed count assumption remains undefined.",
+          answers.phased_activation === true
+            ? `Service activation is expected to be phased. Current phase logic: ${answers.phase_logic || "to be defined"}.`
+            : answers.phased_activation === false
+            ? "Service activation is not currently expected to be phased."
+            : "The phasing logic for service activation remains undefined.",
+          answers.network_integration
+            ? `The intended level of integration with Central Park and the southern cluster is ${formatValueLabel(answers.network_integration)}.`
+            : "The intended level of network integration remains undefined.",
+          answers.central_park_split
+            ? `The current service-line split logic with Central Park is described as: ${answers.central_park_split}.`
+            : "The service-line split with Central Park remains undefined."
+        ],
+        citations: [
+          "Advisory Guide - Role in Southern Vietnam",
+          "Advisory Guide - Strategic Analysis",
+          "Advisory Guide - Operations"
         ]
       });
 
       sections.push({
-        title: "Capacity and Growth Model",
+        title: "Payment and Payer Strategy",
         bullets: [
-          answers.bed_count ? `The planned opening bed count is currently assumed to be ${answers.bed_count}.` : "The planned opening bed count remains undefined.",
-          answers.stabilized_bed_count ? `The maturity-state or stabilized bed count is currently assumed to be ${answers.stabilized_bed_count}.` : "The maturity-state bed count remains undefined.",
-          answers.target_occupancy ? `Target occupancy at stabilization is currently assumed to be ${answers.target_occupancy}%.` : "Target occupancy assumptions have not yet been defined.",
-          asString(answers.alos_assumptions) ? `Average length of stay assumptions are described as: ${answers.alos_assumptions}.` : "Average length of stay assumptions have not yet been defined.",
-          asString(answers.outpatient_inpatient_mix) ? `The desired outpatient-to-inpatient mix is described as: ${answers.outpatient_inpatient_mix}.` : "The desired outpatient-to-inpatient mix remains undefined.",
-          answers.phased_development === true ? `A phased development model is indicated. Current phasing assumptions are described as: ${asString(answers.phase_plan) || "to be defined"}.` :
-          answers.phased_development === false ? "No phased development model is currently indicated." :
-          "It is not yet clear whether the hospital will be developed in phases.",
-          asString(answers.growth_assumptions) ? `Key growth assumptions include: ${answers.growth_assumptions}.` : "Growth assumptions over the first 3 to 5 years have not yet been documented."
+          payerStrategy.length
+            ? `The current payer strategy includes ${payerStrategy.map(formatValueLabel).join(", ")}.`
+            : "The payer strategy remains undefined.",
+          answers.shi_role
+            ? `The intended role of SHI is ${formatValueLabel(answers.shi_role)}.`
+            : "The intended role of SHI remains undefined.",
+          "The source base indicates that SHI is nationally dominant but contributes only a very small share of revenue in premium Vinmec hospitals, implying that SHI should be used tactically rather than as the core premium revenue engine.",
+          answers.insurance_ops
+            ? `Insurance operations maturity is currently assessed as ${formatValueLabel(answers.insurance_ops)}.`
+            : "Insurance operations maturity has not yet been assessed."
+        ],
+        citations: [
+          "Vietnam Healthcare Payment Landscape",
+          "Advisory Guide - Financial, Legal & Compliance"
         ]
       });
 
       sections.push({
-        title: "Operating Model and Workforce Strategy",
+        title: "Workforce and Talent Feasibility",
         bullets: [
-          answers.physician_model ? `The intended physician model is ${formatValueLabel(answers.physician_model)}.` : "The physician model remains undefined.",
-          careModel.length ? `The care model appears to emphasize ${careModel.map(formatValueLabel).join(", ")}.` : "The defining care model has not yet been specified.",
-          asString(answers.protocolization) ? `Protocolization expectations are described as: ${answers.protocolization}.` : "Protocolization expectations remain undefined.",
-          asString(answers.periop_model) ? `The perioperative operating model is described as: ${answers.periop_model}.` : "The perioperative operating model remains undefined.",
-          asString(answers.discharge_model) ? `The discharge planning model is described as: ${answers.discharge_model}.` : "The discharge planning model remains undefined.",
-          asString(answers.care_coordination) ? `The care coordination model is described as: ${answers.care_coordination}.` : "The care coordination model remains undefined.",
-          asString(answers.staffing_shortages) ? `Anticipated workforce shortages or constraints include: ${answers.staffing_shortages}.` : "Potential workforce shortages have not yet been clearly documented.",
-          `International recruitment requirement: ${yesNoUnknown(answers.international_recruitment)}.`
+          answers.workforce_readiness
+            ? `Leadership currently rates workforce readiness as ${formatValueLabel(answers.workforce_readiness)}.`
+            : "Workforce readiness has not yet been assessed.",
+          `International recruitment requirement: ${answers.international_recruitment === true ? "Yes" : answers.international_recruitment === false ? "No" : "To be defined"}.`,
+          answers.critical_workforce_gaps
+            ? `Critical workforce gaps identified include: ${answers.critical_workforce_gaps}.`
+            : "Critical workforce gaps have not yet been clearly documented.",
+          "The source base identifies shortages in transplant surgery, interventional cardiology, anesthesiology, radiology, critical care, and pathology as especially relevant to VMCG’s planned ambition."
+        ],
+        citations: [
+          "Advisory Guide - Medical Staff and Nursing",
+          "Medium Vietnam market presentation"
         ]
       });
 
       sections.push({
-        title: "Digital and Innovation Strategy",
+        title: "Medical Tourism Strategy",
         bullets: [
-          digital.length ? `Required launch digital capabilities include ${digital.map(formatValueLabel).join(", ")}.` : "Required launch digital capabilities have not yet been defined.",
-          asString(answers.emr_strategy) ? `The EMR strategy is described as: ${answers.emr_strategy}.` : "The EMR strategy remains undefined.",
-          asString(answers.interoperability) ? `Interoperability requirements are described as: ${answers.interoperability}.` : "Interoperability requirements remain undefined.",
-          asString(answers.patient_digital_tools) ? `Patient-facing digital tools are described as: ${answers.patient_digital_tools}.` : "Patient-facing digital tools remain undefined.",
-          aiUseCases.length ? `Priority AI use cases include ${aiUseCases.map(formatValueLabel).join(", ")}.` : digital.includes("ai_ops") ? "AI-enabled operations are in scope, but the highest-priority use cases remain undefined." : "No explicit AI use case agenda has yet been identified."
+          answers.medical_tourism_strategy
+            ? `The current tourism sequencing strategy is ${formatValueLabel(answers.medical_tourism_strategy)}.`
+            : "The tourism sequencing strategy remains undefined.",
+          answers.international_share_early
+            ? `The assumed international patient share in years 1 to 3 is ${answers.international_share_early}%.`
+            : "The assumed early international patient share has not yet been defined.",
+          Array.isArray(answers.tourism_services) && answers.tourism_services.length
+            ? `Priority tourism-linked services include ${answers.tourism_services.map(formatValueLabel).join(", ")}.`
+            : "Priority tourism-linked services have not yet been defined.",
+          "The source base indicates that the most realistic near-term tourism opportunity is outbound Vietnamese recapture and selective regional inbound demand, rather than large-scale early international volume."
+        ],
+        citations: [
+          "Advisory Guide - Medical Tourism",
+          "Advisory Guide - Strategic Takeaway"
         ]
       });
 
       sections.push({
-        title: "Quality and Accreditation Strategy",
+        title: "Quality, Experience, and Financial Strategy",
         bullets: [
-          quality.length ? `Quality and accreditation ambitions currently include ${quality.map(formatValueLabel).join(", ")}.` : "Quality and accreditation ambitions have not yet been defined.",
-          asString(answers.quality_ambition) ? `The desired quality ambition is described as: ${answers.quality_ambition}.` : "The desired quality ambition remains undefined.",
-          asString(answers.safety_culture) ? `Safety culture expectations are described as: ${answers.safety_culture}.` : "Safety culture expectations remain undefined.",
-          asString(answers.priority_outcomes) ? `Priority clinical outcomes include: ${answers.priority_outcomes}.` : "Priority clinical outcomes remain undefined.",
-          answers.jci_timing ? `JCI timing is currently envisioned as ${formatValueLabel(answers.jci_timing)}.` : quality.includes("jci") ? "JCI is an ambition, but the timing remains undefined." : "No JCI timing assumption has been identified."
-        ]
-      });
-
-      sections.push({
-        title: "Facilities and Campus Planning Implications",
-        bullets: [
-          facilities.length ? `Key facility design priorities include ${facilities.map(formatValueLabel).join(", ")}.` : "Facility design priorities have not yet been defined.",
-          asString(answers.design_principles) ? `Facility design principles are described as: ${answers.design_principles}.` : "Facility design principles remain undefined.",
-          asString(answers.critical_adjacencies) ? `Critical clinical adjacencies include: ${answers.critical_adjacencies}.` : "Critical clinical adjacencies remain undefined.",
-          asString(answers.non_clinical_amenities) ? `Required non-clinical amenities include: ${answers.non_clinical_amenities}.` : "Required non-clinical amenities remain undefined.",
-          asString(answers.facility_implications) ? `Additional facility implications identified to date include: ${answers.facility_implications}.` : "Specific facility and campus implications still need to be documented."
-        ]
-      });
-
-      sections.push({
-        title: "Financial Considerations",
-        bullets: [
-          answers.financial_objective ? `The selected financial objective is ${formatValueLabel(answers.financial_objective)}.` : "The financial objective remains undefined.",
-          asString(answers.return_expectations) ? `Return expectations are described as: ${answers.return_expectations}.` : "Return expectations remain undefined.",
-          asString(answers.capital_constraints) ? `Capital constraints are described as: ${answers.capital_constraints}.` : "Capital constraints remain undefined.",
-          asString(answers.revenue_drivers) ? `Expected revenue drivers include: ${answers.revenue_drivers}.` : "Expected revenue drivers have not yet been clearly identified.",
-          asString(answers.subsidized_services) ? `Services expected to require subsidy include: ${answers.subsidized_services}.` : "Potentially subsidized services have not yet been defined.",
-          asString(answers.implementation_risks) ? `Implementation risks identified to date include: ${answers.implementation_risks}.` : "Implementation risks have not yet been clearly documented."
-        ]
-      });
-
-      sections.push({
-        title: "Open Decisions and Recommended Next-Step Agenda",
-        bullets: [
-          asString(answers.open_questions) ? `Open decisions currently identified include: ${answers.open_questions}.` : "A formal list of unresolved decisions still needs to be developed.",
-          "The next planning cycle should focus on validating market demand, refining opening scope, confirming workforce feasibility, and translating strategic choices into facility, digital, and financial implications."
+          qualityAmbition.length
+            ? `Quality and experience ambitions include ${qualityAmbition.map(formatValueLabel).join(", ")}.`
+            : "Quality and experience ambitions remain undefined.",
+          answers.financial_objective
+            ? `The primary financial objective is ${formatValueLabel(answers.financial_objective)}.`
+            : "The primary financial objective remains undefined.",
+          answers.key_risks
+            ? `The major risks identified by leadership include: ${answers.key_risks}.`
+            : "The major risks to the business plan have not yet been clearly documented.",
+          "The source base suggests that early financial performance should be evaluated in the context of brand establishment, workforce front-loading, and phased case-mix maturation rather than short-term margin alone."
+        ],
+        citations: [
+          "Advisory Guide - Financial Analysis",
+          "Advisory Guide - Safety, Quality and Patient Experience"
         ]
       });
 
@@ -1338,25 +1804,184 @@
       document.getElementById("next-list").innerHTML = (summary.next.length ? summary.next : ["No next steps generated yet."]).map(item => `<li>${item}</li>`).join("");
     }
 
-    function renderOutline() {
+    function renderContradictions() {
+      const contradictions = detectContradictions();
+      const container = document.getElementById("contradictions-content");
+
+      if (!contradictions.length) {
+        container.innerHTML = `<p class="muted">No major contradictions detected in the current response set.</p>`;
+        return;
+      }
+
+      container.innerHTML = contradictions.map(c => `
+        <div class="contradiction-item">
+          <div class="small ${c.severity === 'high' ? 'severity-high' : c.severity === 'medium' ? 'severity-medium' : 'severity-low'}">
+            ${c.severity.toUpperCase()} TENSION
+          </div>
+          <h3>${c.title}</h3>
+          <p>${c.description}</p>
+          <span class="source-label">Source: ${c.source}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderRecommendations() {
+      const recs = buildRecommendations();
+      const container = document.getElementById("recommendations-content");
+
+      container.innerHTML = recs.map(r => `
+        <div class="rec-item">
+          <h3>${r.title}</h3>
+          <p>${r.body}</p>
+          <div class="small"><strong>Citations:</strong></div>
+          <ul>
+            ${r.citations.map(c => `<li>${c}</li>`).join("")}
+          </ul>
+        </div>
+      `).join("");
+    }
+
+    function renderOutput() {
       renderDecisionSummary();
+      renderContradictions();
+      renderRecommendations();
+
       const container = document.getElementById("outline-content");
       const sections = buildNarrativeSections();
+
       container.innerHTML = sections.map(section => `
         <div class="outline-section">
           <h3>${section.title}</h3>
           <ul>
             ${section.bullets.map(b => `<li>${b}</li>`).join("")}
           </ul>
+          <div class="small" style="margin-top:10px;">
+            <strong>Sources:</strong> ${section.citations.join("; ")}
+          </div>
         </div>
       `).join("");
+    }
+
+    function renderEvidence() {
+      const container = document.getElementById("evidence-content");
+      container.innerHTML = knowledgeBase.map(f => `
+        <div class="evidence-item">
+          <div class="small">${f.topic} · ${f.geography} · ${f.confidence}</div>
+          <h3>${f.statement}</h3>
+          <p><strong>Implication:</strong> ${f.implication}</p>
+          <span class="source-label">Source: ${f.source}</span>
+        </div>
+      `).join("");
+    }
+
+    function buildResearchQueue() {
+      const tasks = [];
+      if (!answers.pre_infrastructure_strategy) {
+        tasks.push("Define the operating strategy before full transport maturity.");
+      }
+      if (!answers.central_park_split) {
+        tasks.push("Clarify the service-line split between Can Gio and Central Park.");
+      }
+      if (!answers.referral_model) {
+        tasks.push("Define the referral-generation and governance model.");
+      }
+      if (!answers.critical_workforce_gaps) {
+        tasks.push("Assess critical workforce gaps by specialty and opening phase.");
+      }
+      if (!answers.key_risks) {
+        tasks.push("Document the major business plan risks and mitigation actions.");
+      }
+      if (!answers.insurance_ops || answers.insurance_ops === "not_defined") {
+        tasks.push("Define the insurance operations model, including direct billing and payer partnerships.");
+      }
+      return tasks;
+    }
+
+    function renderResearchQueue() {
+      const container = document.getElementById("research-content");
+      const tasks = buildResearchQueue();
+
+      if (!tasks.length) {
+        container.innerHTML = `<p class="muted">No major research gaps identified from the current response set.</p>`;
+        return;
+      }
+
+      container.innerHTML = tasks.map((t, idx) => `
+        <div class="research-item">
+          <div class="small">Research Task ${idx + 1}</div>
+          <h3>${t}</h3>
+          <p class="muted">Suggested next step: validate this through internal planning materials, stakeholder interviews, or backend-enabled evidence search.</p>
+        </div>
+      `).join("");
+    }
+
+    async function runBackendSearchDemo() {
+      const query = prompt("Enter a search query for the backend search hook:", "Can Gio population infrastructure healthcare demand");
+      if (!query) return;
+
+      try {
+        const response = await fetch("/api/search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+        });
+
+        if (!response.ok) throw new Error("Backend search hook not available.");
+        const data = await response.json();
+        alert("Backend search response received. Open console to inspect.");
+        console.log("Search results:", data);
+      } catch (err) {
+        alert("Backend search hook is not connected yet. This prototype is ready for a private backend at /api/search.");
+        console.log(err);
+      }
+    }
+
+    async function runBackendResearchDemo() {
+      const task = prompt("Enter a research task for the backend research hook:", "Need updated Can Gio population and infrastructure timeline");
+      if (!task) return;
+
+      try {
+        const response = await fetch("/api/research", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ task })
+        });
+
+        if (!response.ok) throw new Error("Backend research hook not available.");
+        const data = await response.json();
+        alert("Backend research task created. Open console to inspect.");
+        console.log("Research task response:", data);
+      } catch (err) {
+        alert("Backend research hook is not connected yet. This prototype is ready for a private backend at /api/research.");
+        console.log(err);
+      }
+    }
+
+    async function runBackendRecommendationDemo() {
+      try {
+        const response = await fetch("/api/recommendations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answers, knowledgeBase })
+        });
+
+        if (!response.ok) throw new Error("Backend recommendation hook not available.");
+        const data = await response.json();
+        alert("Backend recommendation response received. Open console to inspect.");
+        console.log("Recommendation response:", data);
+      } catch (err) {
+        alert("Backend recommendation hook is not connected yet. This prototype is ready for a private backend at /api/recommendations.");
+        console.log(err);
+      }
     }
 
     function renderAll() {
       renderModuleLists();
       renderQuestionnaire();
       renderReview();
-      renderOutline();
+      renderEvidence();
+      renderResearchQueue();
+      renderOutput();
     }
 
     function escapeQuotes(str) {
