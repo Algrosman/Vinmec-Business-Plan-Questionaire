@@ -3,445 +3,396 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Can Gio Hospital Planning Navigator - Advanced Prototype</title>
+  <title>Can Gio Hospital Planning Navigator</title>
   <style>
-    :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e2e8f0;
-      --blue: #1d4ed8;
-      --blue-dark: #1e40af;
-      --green: #166534;
-      --amber: #92400e;
-      --red: #991b1b;
-      --slate: #334155;
-      --pill-bg: #eff6ff;
-      --pill-border: #bfdbfe;
-      --soft-blue: #f0f7ff;
-      --soft-green: #f0fdf4;
-      --soft-amber: #fffbeb;
-      --soft-red: #fef2f2;
+    :root{
+      --bg:#f4f8fb;
+      --card:#ffffff;
+      --text:#16324f;
+      --muted:#5b7088;
+      --border:#d8e3ee;
+      --cc-blue:#0070c9;
+      --cc-blue-dark:#005a9e;
+      --cc-blue-soft:#eaf4fb;
+      --navy:#0f2740;
+      --green:#0f7b6c;
+      --amber:#9a6700;
+      --red:#b42318;
+      --soft-green:#ecfdf3;
+      --soft-amber:#fffaeb;
+      --soft-red:#fef3f2;
+      --soft-blue:#eef7ff;
+      --shadow:0 8px 24px rgba(16, 24, 40, 0.06);
+      --radius:18px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#f7fbfe 0%, #f4f8fb 100%);
+      color:var(--text);
+    }
+    .container{
+      max-width:1400px;
+      margin:0 auto;
+      padding:24px 18px 60px;
+    }
+    .hero{
+      background:linear-gradient(135deg, #0f2740 0%, #0070c9 100%);
+      color:white;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+    }
+    .hero-top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .hero h1{
+      margin:0 0 10px 0;
+      font-size:34px;
+      line-height:1.1;
+      letter-spacing:-0.02em;
+    }
+    .hero p{
+      margin:0;
+      max-width:850px;
+      color:rgba(255,255,255,0.9);
+      line-height:1.5;
+    }
+    .hero-badge{
+      display:inline-block;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.22);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .hero-meta{
+      min-width:260px;
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:16px;
+      padding:16px;
+    }
+    .hero-meta p{
+      margin:6px 0;
+      font-size:14px;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px 18px 60px;
+    .btn{
+      border:none;
+      border-radius:12px;
+      padding:11px 16px;
+      font-size:14px;
+      cursor:pointer;
+      transition:0.2s ease;
+      font-weight:600;
     }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    .btn-primary{
+      background:white;
+      color:var(--cc-blue-dark);
     }
-
-    h1, h2, h3, h4 {
-      margin-top: 0;
+    .btn-primary:hover{background:#eef6ff}
+    .btn-secondary{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,0.3);
     }
-
-    .muted {
-      color: var(--muted);
+    .btn-secondary:hover{background:rgba(255,255,255,0.08)}
+    .btn-danger{
+      background:#d92d20;
+      color:white;
     }
-
-    .small {
-      font-size: 13px;
-      color: #64748b;
+    .btn-danger:hover{background:#b42318}
+    .btn-light{
+      background:var(--card);
+      color:var(--text);
+      border:1px solid var(--border);
     }
+    .btn-light:hover{background:#f8fbff}
 
-    .section-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--blue);
-      font-weight: bold;
-      margin-bottom: 8px;
+    .layout{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
     }
-
-    .btn {
-      display: inline-block;
-      border: none;
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      margin-right: 8px;
-      margin-top: 8px;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--blue-dark);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--text);
-      border: 1px solid #cbd5e1;
-    }
-
-    .btn-secondary:hover {
-      background: #f8fafc;
-    }
-
-    .btn-danger {
-      background: #b91c1c;
-      color: white;
-    }
-
-    .btn-danger:hover {
-      background: #991b1b;
-    }
-
-    .btn-ghost {
-      background: #f8fafc;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-ghost:hover {
-      background: #eef2f7;
-    }
-
-    textarea,
-    input[type="text"],
-    input[type="number"] {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #cbd5e1;
-      font-size: 14px;
-      box-sizing: border-box;
-      font-family: inherit;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .option {
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fff;
-      display: block;
-      cursor: pointer;
-    }
-
-    .option:hover {
-      background: #f8fafc;
-    }
-
-    .progress-wrap {
-      background: #e2e8f0;
-      border-radius: 999px;
-      height: 12px;
-      overflow: hidden;
-      margin-top: 10px;
-    }
-
-    .progress-bar {
-      background: var(--blue);
-      height: 12px;
-      width: 0%;
-      transition: width 0.2s ease;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .top-nav button {
-      margin-right: 8px;
-      margin-bottom: 8px;
-    }
-
-    .answer-block {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 14px;
-      margin-bottom: 14px;
-    }
-
-    .pill {
-      display: inline-block;
-      background: var(--pill-bg);
-      color: var(--blue);
-      border: 1px solid var(--pill-border);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 12px;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    @media (min-width: 980px) {
-      .layout {
-        grid-template-columns: 280px 1fr;
+    @media(min-width:1100px){
+      .layout{
+        grid-template-columns:320px 1fr;
       }
     }
 
-    .sidebar {
-      position: sticky;
-      top: 18px;
-      align-self: start;
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
     }
 
-    .module-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .sidebar{
+      position:sticky;
+      top:18px;
+      align-self:start;
     }
 
-    .module-btn {
-      width: 100%;
-      text-align: left;
-      border: 1px solid var(--border);
-      background: white;
-      border-radius: 10px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font-size: 14px;
+    .eyebrow{
+      color:var(--cc-blue);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin-bottom:8px;
     }
 
-    .module-btn:hover {
-      background: #f8fafc;
+    h2,h3,h4{
+      margin-top:0;
+      letter-spacing:-0.02em;
     }
 
-    .module-btn.active {
-      border-color: var(--blue);
-      background: #eff6ff;
-      color: var(--blue);
-      font-weight: bold;
+    .muted{color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+
+    .module-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .module-btn{
+      width:100%;
+      text-align:left;
+      border:1px solid var(--border);
+      background:white;
+      border-radius:14px;
+      padding:12px 14px;
+      cursor:pointer;
+      transition:0.2s ease;
+      color:var(--text);
+    }
+    .module-btn:hover{
+      background:#f8fbff;
+      border-color:#bfd6ea;
+    }
+    .module-btn.active{
+      background:var(--soft-blue);
+      border-color:#9ec8ea;
+      color:var(--cc-blue-dark);
     }
 
-    .note {
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 12px;
+    .progress-wrap{
+      background:#e8f0f7;
+      border-radius:999px;
+      height:12px;
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .progress-bar{
+      background:linear-gradient(90deg,var(--cc-blue),var(--cc-blue-dark));
+      height:12px;
+      width:0%;
+      transition:width 0.2s ease;
     }
 
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .kpi{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .kpi .label{
+      font-size:12px;
+      color:var(--muted);
+    }
+    .kpi .value{
+      font-size:22px;
+      font-weight:800;
+      margin-top:4px;
+      color:var(--navy);
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: bold;
-      color: var(--blue);
-      background: #dbeafe;
-      border-radius: 999px;
-      padding: 6px 10px;
-      margin-bottom: 10px;
+    .summary-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
     }
-
-    .inline-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .outline-section {
-      margin-bottom: 28px;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
-    }
-
-    .outline-section:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .outline-section ul {
-      padding-left: 20px;
-    }
-
-    .outline-section li {
-      margin-bottom: 8px;
-    }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .status-box {
-      min-width: 240px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .status-box p {
-      margin: 6px 0;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    @media (min-width: 900px) {
-      .summary-grid {
-        grid-template-columns: 1fr 1fr;
+    @media(min-width:900px){
+      .summary-grid{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    .summary-box {
-      border-radius: 14px;
-      padding: 16px;
-      border: 1px solid var(--border);
+    .summary-box{
+      border-radius:16px;
+      padding:18px;
+      border:1px solid var(--border);
+    }
+    .summary-box.decisions{background:var(--soft-blue)}
+    .summary-box.assumptions{background:var(--soft-amber)}
+    .summary-box.open{background:var(--soft-red)}
+    .summary-box.next{background:var(--soft-green)}
+
+    .option{
+      display:block;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:10px;
+      background:white;
+      cursor:pointer;
+      transition:0.2s ease;
+    }
+    .option:hover{
+      background:#f8fbff;
+      border-color:#b7d3ea;
     }
 
-    .summary-box.decisions {
-      background: var(--soft-blue);
+    textarea, input[type="text"], input[type="number"]{
+      width:100%;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid #c9d8e6;
+      font-size:14px;
+      font-family:inherit;
+      color:var(--text);
+      background:white;
+    }
+    textarea{
+      min-height:120px;
+      resize:vertical;
     }
 
-    .summary-box.assumptions {
-      background: var(--soft-amber);
+    .note{
+      margin-top:14px;
+      background:#f8fbff;
+      border:1px dashed #bfd6ea;
+      border-radius:14px;
+      padding:14px;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    .summary-box.open {
-      background: var(--soft-red);
+    .footer-actions{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    .summary-box.next {
-      background: var(--soft-green);
+    .pill{
+      display:inline-block;
+      background:var(--cc-blue-soft);
+      color:var(--cc-blue-dark);
+      border:1px solid #b7d3ea;
+      border-radius:999px;
+      padding:5px 10px;
+      font-size:12px;
+      margin-right:6px;
+      margin-bottom:6px;
     }
 
-    .kpi-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
+    .answer-block{
+      border-bottom:1px solid var(--border);
+      padding-bottom:14px;
+      margin-bottom:14px;
     }
 
-    .kpi {
-      border: 1px solid var(--border);
-      background: white;
-      border-radius: 12px;
-      padding: 10px 12px;
-      min-width: 160px;
+    .outline-section{
+      margin-bottom:28px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+    }
+    .outline-section:first-child{
+      border-top:none;
+      padding-top:0;
+    }
+    .outline-section ul{
+      padding-left:20px;
+    }
+    .outline-section li{
+      margin-bottom:8px;
+      line-height:1.5;
     }
 
-    .kpi .label {
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .hidden{display:none}
 
-    .kpi .value {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 4px;
+    .home-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
     }
-
-    .question-meta {
-      margin-bottom: 14px;
-    }
-
-    .question-meta .small {
-      margin-bottom: 4px;
-    }
-
-    .helper {
-      margin-top: 8px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .print-only {
-      display: none;
-    }
-
-    @media print {
-      .top-nav,
-      .sidebar,
-      .footer-actions,
-      .btn,
-      .note {
-        display: none !important;
+    @media(min-width:1000px){
+      .home-grid{
+        grid-template-columns:1.3fr 1fr;
       }
+    }
 
-      .print-only {
-        display: block;
-      }
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eaf4fb;
+      color:var(--cc-blue-dark);
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:10px;
+    }
 
-      body {
-        background: white;
-      }
-
-      .card {
-        box-shadow: none;
-        border: 1px solid #ddd;
-      }
-
-      .layout {
-        display: block;
-      }
+    .print-only{display:none}
+    @media print{
+      .hero .nav, .sidebar, .footer-actions, .btn, .note{display:none !important}
+      .print-only{display:block}
+      body{background:white}
+      .card,.hero{box-shadow:none}
+      .layout{display:block}
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <div class="header-row">
+    <div class="hero">
+      <div class="hero-top">
         <div>
-          <div class="section-title">Cleveland Clinic Connected</div>
+          <div class="hero-badge">Cleveland Clinic Connected</div>
           <h1>Can Gio Hospital Planning Navigator</h1>
-          <p class="muted">
-            Advanced prototype for guiding Vinmec through hospital visioning, planning assumptions,
-            and business plan outline development for the Can Gio hospital project.
+          <p>
+            A strategic planning tool to help define the vision, operating assumptions, clinical scope,
+            and business plan outline for Vinmec’s future hospital in Can Gio.
           </p>
         </div>
-
-        <div class="status-box">
-          <p><strong>Mode:</strong> Local Advanced Prototype</p>
-          <p><strong>Storage:</strong> Browser Local Storage</p>
-          <p><strong>Questionnaire:</strong> Branching</p>
-          <p><strong>Output:</strong> Narrative Outline + Decision Summary</p>
+        <div class="hero-meta">
+          <p><strong>Format:</strong> Single-file prototype</p>
+          <p><strong>Storage:</strong> Browser local storage</p>
+          <p><strong>Question set:</strong> 90 questions with branching</p>
+          <p><strong>Output:</strong> Executive summary and business plan outline</p>
         </div>
       </div>
 
-      <div class="top-nav">
+      <div class="nav">
         <button class="btn btn-primary" onclick="showPage('home')">Home</button>
         <button class="btn btn-secondary" onclick="showPage('questionnaire')">Questionnaire</button>
         <button class="btn btn-secondary" onclick="showPage('review')">Review Answers</button>
@@ -451,64 +402,52 @@
     </div>
 
     <div id="page-home" class="page">
-      <div class="layout">
-        <div class="sidebar">
-          <div class="card">
-            <h3>Modules</h3>
-            <div id="home-module-list" class="module-list"></div>
-          </div>
-        </div>
-
+      <div class="home-grid">
         <div>
           <div class="card">
-            <span class="badge">Advanced Prototype</span>
+            <div class="tag">Consulting-style prototype</div>
             <h2>Welcome</h2>
             <p class="muted">
-              This version expands the questionnaire and improves the output so it feels more like
-              a strategic planning tool rather than a simple form. It is designed to support working
-              sessions with Cleveland Clinic Connected and Vinmec stakeholders.
+              This version is designed to support structured planning workshops between Cleveland Clinic Connected
+              and Vinmec stakeholders. It captures strategic, clinical, operational, workforce, digital, facilities,
+              and financial inputs, then translates them into a draft business plan output.
             </p>
-
-            <div class="inline-buttons">
-              <button class="btn btn-primary" onclick="showPage('questionnaire')">Start Questionnaire</button>
-              <button class="btn btn-secondary" onclick="showPage('outline')">View Current Output</button>
+            <div>
+              <button class="btn btn-light" onclick="showPage('questionnaire')">Start Questionnaire</button>
+              <button class="btn btn-light" onclick="showPage('outline')">View Current Output</button>
             </div>
           </div>
 
           <div class="summary-grid">
             <div class="summary-box decisions">
-              <h3>What it captures</h3>
+              <h3>What this tool captures</h3>
               <ul>
                 <li>Strategic purpose and ambition</li>
-                <li>Market and patient priorities</li>
-                <li>Clinical scope and service lines</li>
-                <li>Capacity and phasing assumptions</li>
-                <li>Operating model and workforce needs</li>
+                <li>Market demand and patient segments</li>
+                <li>Clinical scope and service-line choices</li>
+                <li>Capacity, phasing, and growth assumptions</li>
+                <li>Operating model and workforce strategy</li>
                 <li>Digital, quality, facilities, and finance inputs</li>
               </ul>
             </div>
-
             <div class="summary-box next">
-              <h3>What it generates</h3>
+              <h3>What this tool generates</h3>
               <ul>
                 <li>Executive summary</li>
                 <li>Business plan outline</li>
                 <li>Decision summary</li>
-                <li>Assumptions requiring validation</li>
+                <li>Assumptions to validate</li>
                 <li>Open questions</li>
                 <li>Recommended next-step agenda</li>
               </ul>
             </div>
           </div>
+        </div>
 
+        <div>
           <div class="card">
-            <h3>Suggested workshop use</h3>
-            <ul>
-              <li>Use one facilitator to enter responses live during stakeholder discussions.</li>
-              <li>Review the generated output after each major module.</li>
-              <li>Identify where the group has made a decision versus where assumptions remain untested.</li>
-              <li>Use the “open questions” and “next steps” sections to shape follow-up meetings.</li>
-            </ul>
+            <h3>Modules</h3>
+            <div id="home-module-list" class="module-list"></div>
           </div>
         </div>
       </div>
@@ -518,19 +457,18 @@
       <div class="layout">
         <div class="sidebar">
           <div class="card">
-            <h3>Questionnaire Modules</h3>
+            <div class="eyebrow">Questionnaire modules</div>
             <div id="module-list" class="module-list"></div>
           </div>
 
           <div class="card">
-            <h3>Progress</h3>
-            <div class="small">
-              <span id="progress-text">Question 1 of 1</span>
-            </div>
+            <div class="eyebrow">Progress</div>
+            <div class="small"><span id="progress-text">Question 1 of 1</span></div>
             <div class="progress-wrap">
               <div id="progress-bar" class="progress-bar"></div>
             </div>
-            <div class="kpi-row">
+
+            <div class="kpi-grid">
               <div class="kpi">
                 <div class="label">Visible Questions</div>
                 <div class="value" id="visible-count">0</div>
@@ -548,12 +486,12 @@
 
           <div class="card footer-actions">
             <div>
-              <button class="btn btn-secondary" onclick="prevQuestion()">Back</button>
-              <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
+              <button class="btn btn-light" onclick="prevQuestion()">Back</button>
+              <button class="btn btn-light" onclick="nextQuestion()">Next</button>
             </div>
             <div>
-              <button class="btn btn-secondary" onclick="showPage('review')">Review Answers</button>
-              <button class="btn btn-secondary" onclick="showPage('outline')">View Output</button>
+              <button class="btn btn-light" onclick="showPage('review')">Review Answers</button>
+              <button class="btn btn-light" onclick="showPage('outline')">View Output</button>
             </div>
           </div>
         </div>
@@ -563,9 +501,7 @@
     <div id="page-review" class="page hidden">
       <div class="card">
         <h2>Review Answers</h2>
-        <p class="muted">
-          Review the currently visible questionnaire responses below.
-        </p>
+        <p class="muted">Review the currently visible questionnaire responses below.</p>
         <div id="review-content"></div>
       </div>
     </div>
@@ -605,439 +541,238 @@
           strategic planning discussions and business plan development.
         </p>
         <div id="outline-content"></div>
-        <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+        <button class="btn btn-light" onclick="window.print()">Print / Save as PDF</button>
       </div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = "can-gio-hospital-planner-advanced";
+    const STORAGE_KEY = "can-gio-hospital-planner-v4";
 
     const questions = [
-      {
-        id: "strategic_purpose",
-        module: "Strategic Vision and Ambition",
-        section: "Strategic Vision and Ambition",
-        title: "What is the primary strategic purpose of the Can Gio hospital?",
-        type: "single",
-        options: [
-          { label: "Local access hospital", value: "local_access" },
-          { label: "Regional referral hospital", value: "regional_referral" },
-          { label: "Premium or international destination hospital", value: "premium_international" },
-          { label: "Mixed model", value: "mixed_model" }
-        ],
-        help: "This defines the overall role, complexity, and positioning of the hospital."
-      },
-      {
-        id: "problem_to_solve",
-        module: "Strategic Vision and Ambition",
-        section: "Strategic Vision and Ambition",
-        title: "What core problem is this hospital intended to solve?",
-        type: "text"
-      },
-      {
-        id: "success_year_1",
-        module: "Strategic Vision and Ambition",
-        section: "Strategic Vision and Ambition",
-        title: "What would success look like in year 1?",
-        type: "text"
-      },
-      {
-        id: "success_year_5",
-        module: "Strategic Vision and Ambition",
-        section: "Strategic Vision and Ambition",
-        title: "What would success look like in year 5?",
-        type: "text"
-      },
-      {
-        id: "strategic_priorities",
-        module: "Strategic Vision and Ambition",
-        section: "Strategic Vision and Ambition",
-        title: "Which strategic priorities are most important?",
-        type: "multi",
-        options: [
-          { label: "Improve access", value: "access" },
-          { label: "Strengthen Vinmec brand", value: "brand" },
-          { label: "Create a referral destination", value: "referral" },
-          { label: "Generate financial return", value: "financial_return" },
-          { label: "Support network integration", value: "network_integration" },
-          { label: "Launch advanced clinical programs", value: "advanced_programs" }
-        ]
-      },
+      { id:"strategic_purpose", module:"1. Strategic Vision and Ambition", title:"What is the primary strategic purpose of the Can Gio hospital?", type:"single", options:[
+        {label:"Local access hospital", value:"local_access"},
+        {label:"Regional referral hospital", value:"regional_referral"},
+        {label:"Premium or international destination hospital", value:"premium_international"},
+        {label:"Mixed model", value:"mixed_model"}
+      ], help:"This defines the overall role, complexity, and positioning of the hospital."},
+      { id:"problem_to_solve", module:"1. Strategic Vision and Ambition", title:"What core problem is this hospital intended to solve?", type:"text"},
+      { id:"success_year_1", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 1?", type:"text"},
+      { id:"success_year_3", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 3?", type:"text"},
+      { id:"success_year_5", module:"1. Strategic Vision and Ambition", title:"What would success look like in year 5?", type:"text"},
+      { id:"strategic_priorities", module:"1. Strategic Vision and Ambition", title:"Which strategic priorities are most important?", type:"multi", options:[
+        {label:"Improve access", value:"access"},
+        {label:"Strengthen Vinmec brand", value:"brand"},
+        {label:"Create a referral destination", value:"referral"},
+        {label:"Generate financial return", value:"financial_return"},
+        {label:"Support network integration", value:"network_integration"},
+        {label:"Launch advanced clinical programs", value:"advanced_programs"}
+      ]},
+      { id:"non_negotiables", module:"1. Strategic Vision and Ambition", title:"What are the top non-negotiable strategic priorities?", type:"text"},
+      { id:"tradeoffs", module:"1. Strategic Vision and Ambition", title:"What tradeoffs is leadership willing to make?", type:"text"},
 
-      {
-        id: "target_segments",
-        module: "Market and Patient Strategy",
-        section: "Market and Patient Strategy",
-        title: "Which patient segments are priorities?",
-        type: "multi",
-        options: [
-          { label: "Local residents", value: "local_residents" },
-          { label: "Ho Chi Minh City overflow", value: "hcmc_overflow" },
-          { label: "Regional referrals", value: "regional_referrals" },
-          { label: "International patients", value: "international_patients" },
-          { label: "Corporate or employer clients", value: "corporate_clients" }
-        ]
-      },
-      {
-        id: "catchment_area",
-        module: "Market and Patient Strategy",
-        section: "Market and Patient Strategy",
-        title: "What is the expected primary and secondary catchment area?",
-        type: "text"
-      },
-      {
-        id: "unmet_needs",
-        module: "Market and Patient Strategy",
-        section: "Market and Patient Strategy",
-        title: "What unmet needs is this hospital intended to address?",
-        type: "text"
-      },
-      {
-        id: "competitors",
-        module: "Market and Patient Strategy",
-        section: "Market and Patient Strategy",
-        title: "Which competitor hospitals or alternatives are most relevant?",
-        type: "text"
-      },
-      {
-        id: "premium_features",
-        module: "Market and Patient Strategy",
-        section: "Market and Patient Strategy",
-        title: "Which premium experience features are essential?",
-        type: "multi",
-        condition: { questionId: "target_segments", includes: "international_patients" },
-        options: [
-          { label: "Private rooms", value: "private_rooms" },
-          { label: "Concierge navigation", value: "concierge" },
-          { label: "Executive health services", value: "executive_health" },
-          { label: "Dedicated premium clinics", value: "premium_clinics" },
-          { label: "Hospitality-oriented amenities", value: "hospitality" }
-        ]
-      },
+      { id:"target_segments", module:"2. Market and Patient Strategy", title:"Which patient segments are priorities?", type:"multi", options:[
+        {label:"Local residents", value:"local_residents"},
+        {label:"Ho Chi Minh City overflow", value:"hcmc_overflow"},
+        {label:"Regional referrals", value:"regional_referrals"},
+        {label:"International patients", value:"international_patients"},
+        {label:"Corporate or employer clients", value:"corporate_clients"}
+      ]},
+      { id:"catchment_area", module:"2. Market and Patient Strategy", title:"What is the expected primary and secondary catchment area?", type:"text"},
+      { id:"population_trends", module:"2. Market and Patient Strategy", title:"What demographic or population trends are most relevant?", type:"text"},
+      { id:"disease_burden", module:"2. Market and Patient Strategy", title:"What disease burden trends are most relevant?", type:"text"},
+      { id:"unmet_needs", module:"2. Market and Patient Strategy", title:"What unmet needs is this hospital intended to address?", type:"text"},
+      { id:"patient_leakage", module:"2. Market and Patient Strategy", title:"What patient leakage patterns exist today?", type:"text"},
+      { id:"competitors", module:"2. Market and Patient Strategy", title:"Which competitor hospitals or alternatives are most relevant?", type:"text"},
+      { id:"underserved_services", module:"2. Market and Patient Strategy", title:"Which services appear underserved in the market?", type:"text"},
+      { id:"premium_features", module:"2. Market and Patient Strategy", title:"Which premium experience features are essential?", type:"multi", condition:{questionId:"target_segments", includes:"international_patients"}, options:[
+        {label:"Private rooms", value:"private_rooms"},
+        {label:"Concierge navigation", value:"concierge"},
+        {label:"Executive health services", value:"executive_health"},
+        {label:"Dedicated premium clinics", value:"premium_clinics"},
+        {label:"Hospitality-oriented amenities", value:"hospitality"}
+      ]},
+      { id:"source_markets", module:"2. Market and Patient Strategy", title:"If international patients are a target, which source markets are most relevant?", type:"text", condition:{questionId:"target_segments", includes:"international_patients"}},
 
-      {
-        id: "network_role",
-        module: "Role in the Vinmec Network",
-        section: "Role in the Vinmec Network",
-        title: "How should Can Gio complement the broader Vinmec network?",
-        type: "text"
-      },
-      {
-        id: "network_integration",
-        module: "Role in the Vinmec Network",
-        section: "Role in the Vinmec Network",
-        title: "What level of integration with the broader Vinmec network is expected?",
-        type: "single",
-        options: [
-          { label: "Low", value: "low" },
-          { label: "Moderate", value: "moderate" },
-          { label: "High", value: "high" }
-        ]
-      },
-      {
-        id: "shared_services",
-        module: "Role in the Vinmec Network",
-        section: "Role in the Vinmec Network",
-        title: "Which services or functions should be shared across the network?",
-        type: "text",
-        condition: { questionId: "network_integration", equals: "high" }
-      },
+      { id:"network_role", module:"3. Role in the Vinmec Network", title:"How should Can Gio complement the broader Vinmec network?", type:"text"},
+      { id:"network_integration", module:"3. Role in the Vinmec Network", title:"What level of integration with the broader Vinmec network is expected?", type:"single", options:[
+        {label:"Low", value:"low"},
+        {label:"Moderate", value:"moderate"},
+        {label:"High", value:"high"}
+      ]},
+      { id:"retain_vs_transfer", module:"3. Role in the Vinmec Network", title:"Which cases should be retained locally versus transferred elsewhere in the network?", type:"text"},
+      { id:"shared_services", module:"3. Role in the Vinmec Network", title:"Which services or functions should be shared across the network?", type:"text", condition:{questionId:"network_integration", equals:"high"}},
+      { id:"protocol_standardization", module:"3. Role in the Vinmec Network", title:"What degree of clinical protocol standardization is desired across the network?", type:"text"},
+      { id:"support_functions", module:"3. Role in the Vinmec Network", title:"Which support functions should be centralized versus local?", type:"text"},
 
-      {
-        id: "opening_services",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "Which service lines are essential at opening?",
-        type: "multi",
-        options: [
-          { label: "Emergency", value: "emergency" },
-          { label: "General medicine", value: "general_medicine" },
-          { label: "General surgery", value: "general_surgery" },
-          { label: "Cardiology", value: "cardiology" },
-          { label: "Oncology", value: "oncology" },
-          { label: "Orthopedics", value: "orthopedics" },
-          { label: "Women and children", value: "women_children" },
-          { label: "ICU or critical care", value: "icu" },
-          { label: "Diagnostics", value: "diagnostics" },
-          { label: "Rehabilitation", value: "rehabilitation" }
-        ]
-      },
-      {
-        id: "specialized_programs",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "Will the hospital include highly specialized programs?",
-        type: "boolean"
-      },
-      {
-        id: "advanced_programs",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "Which advanced programs are under consideration?",
-        type: "multi",
-        condition: { questionId: "specialized_programs", equals: true },
-        options: [
-          { label: "Cardiac surgery", value: "cardiac_surgery" },
-          { label: "Neurosciences", value: "neurosciences" },
-          { label: "Oncology center", value: "oncology_center" },
-          { label: "Transplant", value: "transplant" },
-          { label: "Advanced ICU", value: "advanced_icu" },
-          { label: "Interventional platform", value: "interventional_platform" }
-        ]
-      },
-      {
-        id: "cardiology_scope",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "What level of cardiology capability is envisioned?",
-        type: "single",
-        condition: { questionId: "opening_services", includes: "cardiology" },
-        options: [
-          { label: "Non-invasive only", value: "non_invasive" },
-          { label: "Interventional cardiology", value: "interventional" },
-          { label: "Interventional plus cardiac surgery aspiration", value: "interventional_plus_surgery" }
-        ]
-      },
-      {
-        id: "oncology_scope",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "What level of oncology capability is envisioned?",
-        type: "single",
-        condition: { questionId: "opening_services", includes: "oncology" },
-        options: [
-          { label: "Medical oncology only", value: "medical_only" },
-          { label: "Medical oncology plus infusion", value: "medical_plus_infusion" },
-          { label: "Comprehensive cancer center aspiration", value: "comprehensive_center" }
-        ]
-      },
-      {
-        id: "women_children_scope",
-        module: "Clinical Scope and Service Lines",
-        section: "Clinical Scope and Service Lines",
-        title: "What women and children services are envisioned?",
-        type: "multi",
-        condition: { questionId: "opening_services", includes: "women_children" },
-        options: [
-          { label: "Obstetrics", value: "obstetrics" },
-          { label: "Pediatrics", value: "pediatrics" },
-          { label: "NICU", value: "nicu" },
-          { label: "Pediatric subspecialties", value: "pediatric_subspecialties" }
-        ]
-      },
+      { id:"experience_strategy", module:"4. Patient Experience and Positioning", title:"What patient experience should differentiate the hospital?", type:"text"},
+      { id:"service_tiers", module:"4. Patient Experience and Positioning", title:"Will there be differentiated service tiers?", type:"boolean"},
+      { id:"premium_tier_model", module:"4. Patient Experience and Positioning", title:"If differentiated service tiers are planned, how should they be structured?", type:"text", condition:{questionId:"service_tiers", equals:true}},
+      { id:"outpatient_access_model", module:"4. Patient Experience and Positioning", title:"What access model is envisioned for outpatient care?", type:"text"},
+      { id:"convenience_vs_complexity", module:"4. Patient Experience and Positioning", title:"How should the hospital balance convenience versus complexity of care?", type:"text"},
+      { id:"multilingual_support", module:"4. Patient Experience and Positioning", title:"Will multilingual patient support be required?", type:"boolean"},
+      { id:"concierge_model", module:"4. Patient Experience and Positioning", title:"Will concierge or navigation services be required?", type:"boolean"},
 
-      {
-        id: "bed_count",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "What is the planned opening bed count?",
-        type: "number"
-      },
-      {
-        id: "stabilized_bed_count",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "What bed count is envisioned at stabilization or maturity?",
-        type: "number"
-      },
-      {
-        id: "target_occupancy",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "What is the target occupancy at stabilization (%)?",
-        type: "number"
-      },
-      {
-        id: "phased_development",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "Will the campus be developed in phases?",
-        type: "boolean"
-      },
-      {
-        id: "phase_plan",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "What services are planned for phase 1 versus later phases?",
-        type: "text",
-        condition: { questionId: "phased_development", equals: true }
-      },
-      {
-        id: "growth_assumptions",
-        module: "Capacity and Growth",
-        section: "Capacity and Growth",
-        title: "What are the key 3- to 5-year growth assumptions?",
-        type: "text"
-      },
+      { id:"opening_services", module:"5. Clinical Scope and Service Lines", title:"Which service lines are essential at opening?", type:"multi", options:[
+        {label:"Emergency", value:"emergency"},
+        {label:"General medicine", value:"general_medicine"},
+        {label:"General surgery", value:"general_surgery"},
+        {label:"Cardiology", value:"cardiology"},
+        {label:"Oncology", value:"oncology"},
+        {label:"Orthopedics", value:"orthopedics"},
+        {label:"Women and children", value:"women_children"},
+        {label:"ICU or critical care", value:"icu"},
+        {label:"Diagnostics", value:"diagnostics"},
+        {label:"Rehabilitation", value:"rehabilitation"}
+      ]},
+      { id:"future_services", module:"5. Clinical Scope and Service Lines", title:"Which services are planned within 24 months after opening?", type:"text"},
+      { id:"anchor_service_lines", module:"5. Clinical Scope and Service Lines", title:"Which service lines are strategic anchors?", type:"text"},
+      { id:"volume_drivers", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be major volume drivers?", type:"text"},
+      { id:"brand_builders", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be brand builders?", type:"text"},
+      { id:"margin_contributors", module:"5. Clinical Scope and Service Lines", title:"Which service lines are expected to be margin contributors?", type:"text"},
+      { id:"specialized_programs", module:"5. Clinical Scope and Service Lines", title:"Will the hospital include highly specialized programs?", type:"boolean"},
+      { id:"advanced_programs", module:"5. Clinical Scope and Service Lines", title:"Which advanced programs are under consideration?", type:"multi", condition:{questionId:"specialized_programs", equals:true}, options:[
+        {label:"Cardiac surgery", value:"cardiac_surgery"},
+        {label:"Neurosciences", value:"neurosciences"},
+        {label:"Oncology center", value:"oncology_center"},
+        {label:"Transplant", value:"transplant"},
+        {label:"Advanced ICU", value:"advanced_icu"},
+        {label:"Interventional platform", value:"interventional_platform"}
+      ]},
+      { id:"cardiology_scope", module:"5. Clinical Scope and Service Lines", title:"What level of cardiology capability is envisioned?", type:"single", condition:{questionId:"opening_services", includes:"cardiology"}, options:[
+        {label:"Non-invasive only", value:"non_invasive"},
+        {label:"Interventional cardiology", value:"interventional"},
+        {label:"Interventional plus cardiac surgery aspiration", value:"interventional_plus_surgery"}
+      ]},
+      { id:"oncology_scope", module:"5. Clinical Scope and Service Lines", title:"What level of oncology capability is envisioned?", type:"single", condition:{questionId:"opening_services", includes:"oncology"}, options:[
+        {label:"Medical oncology only", value:"medical_only"},
+        {label:"Medical oncology plus infusion", value:"medical_plus_infusion"},
+        {label:"Comprehensive cancer center aspiration", value:"comprehensive_center"}
+      ]},
+      { id:"women_children_scope", module:"5. Clinical Scope and Service Lines", title:"What women and children services are envisioned?", type:"multi", condition:{questionId:"opening_services", includes:"women_children"}, options:[
+        {label:"Obstetrics", value:"obstetrics"},
+        {label:"Pediatrics", value:"pediatrics"},
+        {label:"NICU", value:"nicu"},
+        {label:"Pediatric subspecialties", value:"pediatric_subspecialties"}
+      ]},
+      { id:"ed_role", module:"5. Clinical Scope and Service Lines", title:"What emergency department role is envisioned?", type:"text"},
+      { id:"icu_capability", module:"5. Clinical Scope and Service Lines", title:"What ICU capability is required?", type:"text"},
+      { id:"or_platform", module:"5. Clinical Scope and Service Lines", title:"What operating room platform is required?", type:"text"},
+      { id:"diagnostics_platform", module:"5. Clinical Scope and Service Lines", title:"What diagnostics platform is required?", type:"text"},
 
-      {
-        id: "physician_model",
-        module: "Operating Model and Workforce",
-        section: "Operating Model and Workforce",
-        title: "What is the intended physician model?",
-        type: "single",
-        options: [
-          { label: "Employed", value: "employed" },
-          { label: "Affiliated", value: "affiliated" },
-          { label: "Mixed", value: "mixed" }
-        ]
-      },
-      {
-        id: "care_model",
-        module: "Operating Model and Workforce",
-        section: "Operating Model and Workforce",
-        title: "What care model should define the hospital?",
-        type: "multi",
-        options: [
-          { label: "Inpatient-focused acute care", value: "inpatient_acute" },
-          { label: "Ambulatory-first strategy", value: "ambulatory_first" },
-          { label: "Multidisciplinary care pathways", value: "multidisciplinary" },
-          { label: "Virtual care integration", value: "virtual_care" },
-          { label: "Premium hospitality-oriented care", value: "premium_hospitality" }
-        ]
-      },
-      {
-        id: "staffing_shortages",
-        module: "Operating Model and Workforce",
-        section: "Operating Model and Workforce",
-        title: "Are there anticipated shortages in key specialties or roles?",
-        type: "text"
-      },
-      {
-        id: "international_recruitment",
-        module: "Operating Model and Workforce",
-        section: "Operating Model and Workforce",
-        title: "Will international recruitment be required?",
-        type: "boolean"
-      },
-      {
-        id: "international_recruitment_roles",
-        module: "Operating Model and Workforce",
-        section: "Operating Model and Workforce",
-        title: "Which specialties or leadership roles may require international recruitment?",
-        type: "text",
-        condition: { questionId: "international_recruitment", equals: true }
-      },
+      { id:"bed_count", module:"6. Capacity and Growth", title:"What is the planned opening bed count?", type:"number"},
+      { id:"stabilized_bed_count", module:"6. Capacity and Growth", title:"What bed count is envisioned at stabilization or maturity?", type:"number"},
+      { id:"target_occupancy", module:"6. Capacity and Growth", title:"What is the target occupancy at stabilization (%)?", type:"number"},
+      { id:"alos_assumptions", module:"6. Capacity and Growth", title:"What average length of stay assumptions are being used?", type:"text"},
+      { id:"outpatient_inpatient_mix", module:"6. Capacity and Growth", title:"What outpatient-to-inpatient mix is desired?", type:"text"},
+      { id:"ed_volume", module:"6. Capacity and Growth", title:"What emergency department volume is expected?", type:"text"},
+      { id:"surgery_mix", module:"6. Capacity and Growth", title:"What surgery mix is expected?", type:"text"},
+      { id:"phased_development", module:"6. Capacity and Growth", title:"Will the campus be developed in phases?", type:"boolean"},
+      { id:"phase_plan", module:"6. Capacity and Growth", title:"What services are planned for phase 1 versus later phases?", type:"text", condition:{questionId:"phased_development", equals:true}},
+      { id:"expansion_triggers", module:"6. Capacity and Growth", title:"What triggers should determine later-phase expansion?", type:"text", condition:{questionId:"phased_development", equals:true}},
+      { id:"shell_space", module:"6. Capacity and Growth", title:"What shell space or future-proofing should be built initially?", type:"text", condition:{questionId:"phased_development", equals:true}},
+      { id:"growth_assumptions", module:"6. Capacity and Growth", title:"What are the key 3- to 5-year growth assumptions?", type:"text"},
 
-      {
-        id: "digital_capabilities",
-        module: "Digital and Innovation",
-        section: "Digital and Innovation",
-        title: "What digital capabilities are required at launch?",
-        type: "multi",
-        options: [
-          { label: "EMR", value: "emr" },
-          { label: "Telehealth", value: "telehealth" },
-          { label: "Command center", value: "command_center" },
-          { label: "Patient app", value: "patient_app" },
-          { label: "Digital front door", value: "digital_front_door" },
-          { label: "AI-enabled operations", value: "ai_ops" }
-        ]
-      },
-      {
-        id: "ai_use_cases",
-        module: "Digital and Innovation",
-        section: "Digital and Innovation",
-        title: "Which AI use cases are highest priority?",
-        type: "multi",
-        condition: { questionId: "digital_capabilities", includes: "ai_ops" },
-        options: [
-          { label: "Capacity management", value: "capacity_management" },
-          { label: "Clinical documentation", value: "documentation" },
-          { label: "Radiology support", value: "radiology_support" },
-          { label: "Patient navigation", value: "patient_navigation" },
-          { label: "Predictive operations", value: "predictive_operations" }
-        ]
-      },
+      { id:"physician_model", module:"7. Operating Model and Care Model", title:"What is the intended physician model?", type:"single", options:[
+        {label:"Employed", value:"employed"},
+        {label:"Affiliated", value:"affiliated"},
+        {label:"Mixed", value:"mixed"}
+      ]},
+      { id:"care_model", module:"7. Operating Model and Care Model", title:"What care model should define the hospital?", type:"multi", options:[
+        {label:"Inpatient-focused acute care", value:"inpatient_acute"},
+        {label:"Ambulatory-first strategy", value:"ambulatory_first"},
+        {label:"Multidisciplinary care pathways", value:"multidisciplinary"},
+        {label:"Virtual care integration", value:"virtual_care"},
+        {label:"Premium hospitality-oriented care", value:"premium_hospitality"}
+      ]},
+      { id:"protocolization", module:"7. Operating Model and Care Model", title:"What degree of protocolization is expected?", type:"text"},
+      { id:"periop_model", module:"7. Operating Model and Care Model", title:"What operating model is envisioned for perioperative services?", type:"text"},
+      { id:"discharge_model", module:"7. Operating Model and Care Model", title:"What discharge planning model is required?", type:"text"},
+      { id:"care_coordination", module:"7. Operating Model and Care Model", title:"What care coordination model is required?", type:"text"},
+      { id:"telehealth_role", module:"7. Operating Model and Care Model", title:"What role should telehealth play in the model?", type:"text"},
+      { id:"support_services_onsite", module:"7. Operating Model and Care Model", title:"What support services are required on site?", type:"text"},
 
-      {
-        id: "quality_goals",
-        module: "Quality and Accreditation",
-        section: "Quality and Accreditation",
-        title: "What quality or accreditation goals are envisioned?",
-        type: "multi",
-        options: [
-          { label: "JCI", value: "jci" },
-          { label: "National accreditation", value: "national" },
-          { label: "Cleveland Clinic-aligned standards", value: "cc_aligned" },
-          { label: "Not yet defined", value: "not_defined" }
-        ]
-      },
-      {
-        id: "jci_timing",
-        module: "Quality and Accreditation",
-        section: "Quality and Accreditation",
-        title: "If JCI is a goal, when is it expected?",
-        type: "single",
-        condition: { questionId: "quality_goals", includes: "jci" },
-        options: [
-          { label: "At opening", value: "opening" },
-          { label: "Within 1 to 2 years after opening", value: "post_opening_1_2_years" },
-          { label: "Longer-term aspiration", value: "long_term_aspiration" }
-        ]
-      },
+      { id:"staffing_shortages", module:"8. Workforce and Physician Enterprise", title:"Are there anticipated shortages in key specialties or roles?", type:"text"},
+      { id:"nursing_model", module:"8. Workforce and Physician Enterprise", title:"What nursing model is envisioned?", type:"text"},
+      { id:"app_model", module:"8. Workforce and Physician Enterprise", title:"What advanced practice provider model is envisioned?", type:"text"},
+      { id:"international_recruitment", module:"8. Workforce and Physician Enterprise", title:"Will international recruitment be required?", type:"boolean"},
+      { id:"international_recruitment_roles", module:"8. Workforce and Physician Enterprise", title:"Which specialties or leadership roles may require international recruitment?", type:"text", condition:{questionId:"international_recruitment", equals:true}},
+      { id:"training_partnerships", module:"8. Workforce and Physician Enterprise", title:"What training or academic partnerships are needed?", type:"text"},
+      { id:"leadership_roles", module:"8. Workforce and Physician Enterprise", title:"What leadership roles are critical before opening?", type:"text"},
+      { id:"productivity_assumptions", module:"8. Workforce and Physician Enterprise", title:"What workforce productivity assumptions are being used?", type:"text"},
 
-      {
-        id: "facility_priorities",
-        module: "Facilities and Campus Planning",
-        section: "Facilities and Campus Planning",
-        title: "What facility design priorities matter most?",
-        type: "multi",
-        options: [
-          { label: "Flexibility", value: "flexibility" },
-          { label: "Premium patient experience", value: "premium_experience" },
-          { label: "High-acuity capability", value: "high_acuity" },
-          { label: "Efficient throughput", value: "throughput" },
-          { label: "Future expansion", value: "future_expansion" }
-        ]
-      },
-      {
-        id: "facility_implications",
-        module: "Facilities and Campus Planning",
-        section: "Facilities and Campus Planning",
-        title: "What major facility or campus implications are already apparent?",
-        type: "text"
-      },
+      { id:"digital_capabilities", module:"9. Digital and Innovation", title:"What digital capabilities are required at launch?", type:"multi", options:[
+        {label:"EMR", value:"emr"},
+        {label:"Telehealth", value:"telehealth"},
+        {label:"Command center", value:"command_center"},
+        {label:"Patient app", value:"patient_app"},
+        {label:"Digital front door", value:"digital_front_door"},
+        {label:"AI-enabled operations", value:"ai_ops"}
+      ]},
+      { id:"emr_strategy", module:"9. Digital and Innovation", title:"What EMR strategy is planned?", type:"text"},
+      { id:"interoperability", module:"9. Digital and Innovation", title:"What interoperability is required across Vinmec?", type:"text"},
+      { id:"patient_digital_tools", module:"9. Digital and Innovation", title:"What patient-facing digital tools are required?", type:"text"},
+      { id:"command_center_scope", module:"9. Digital and Innovation", title:"If a command center is planned, what operational domains should it manage?", type:"text", condition:{questionId:"digital_capabilities", includes:"command_center"}},
+      { id:"ai_use_cases", module:"9. Digital and Innovation", title:"Which AI use cases are highest priority?", type:"multi", condition:{questionId:"digital_capabilities", includes:"ai_ops"}, options:[
+        {label:"Capacity management", value:"capacity_management"},
+        {label:"Clinical documentation", value:"documentation"},
+        {label:"Radiology support", value:"radiology_support"},
+        {label:"Patient navigation", value:"patient_navigation"},
+        {label:"Predictive operations", value:"predictive_operations"}
+      ]},
+      { id:"cybersecurity", module:"9. Digital and Innovation", title:"What cybersecurity expectations apply?", type:"text"},
+      { id:"data_governance", module:"9. Digital and Innovation", title:"What data governance model is needed?", type:"text"},
 
-      {
-        id: "financial_objective",
-        module: "Finance and Implementation",
-        section: "Finance and Implementation",
-        title: "What is the expected financial objective?",
-        type: "single",
-        options: [
-          { label: "Break-even quickly", value: "break_even" },
-          { label: "Long-term strategic investment", value: "long_term" },
-          { label: "Premium margin model", value: "premium_margin" },
-          { label: "Mixed objective", value: "mixed" }
-        ]
-      },
-      {
-        id: "revenue_drivers",
-        module: "Finance and Implementation",
-        section: "Finance and Implementation",
-        title: "What service lines or offerings are expected to be major revenue drivers?",
-        type: "text"
-      },
-      {
-        id: "implementation_risks",
-        module: "Finance and Implementation",
-        section: "Finance and Implementation",
-        title: "What are the biggest implementation risks?",
-        type: "text"
-      },
-      {
-        id: "open_questions",
-        module: "Finance and Implementation",
-        section: "Finance and Implementation",
-        title: "What key decisions remain unresolved?",
-        type: "text"
-      }
+      { id:"quality_goals", module:"10. Quality and Accreditation", title:"What quality or accreditation goals are envisioned?", type:"multi", options:[
+        {label:"JCI", value:"jci"},
+        {label:"National accreditation", value:"national"},
+        {label:"Cleveland Clinic-aligned standards", value:"cc_aligned"},
+        {label:"Not yet defined", value:"not_defined"}
+      ]},
+      { id:"quality_ambition", module:"10. Quality and Accreditation", title:"What quality ambition should define the hospital?", type:"text"},
+      { id:"safety_culture", module:"10. Quality and Accreditation", title:"What safety culture expectations exist?", type:"text"},
+      { id:"priority_outcomes", module:"10. Quality and Accreditation", title:"What clinical outcomes should be prioritized?", type:"text"},
+      { id:"patient_experience_metrics", module:"10. Quality and Accreditation", title:"What patient experience metrics matter most?", type:"text"},
+      { id:"infection_prevention", module:"10. Quality and Accreditation", title:"What infection prevention standards are required?", type:"text"},
+      { id:"quality_governance", module:"10. Quality and Accreditation", title:"What governance model should oversee quality?", type:"text"},
+      { id:"jci_timing", module:"10. Quality and Accreditation", title:"If JCI is a goal, when is it expected?", type:"single", condition:{questionId:"quality_goals", includes:"jci"}, options:[
+        {label:"At opening", value:"opening"},
+        {label:"Within 1 to 2 years after opening", value:"post_opening_1_2_years"},
+        {label:"Longer-term aspiration", value:"long_term_aspiration"}
+      ]},
+
+      { id:"facility_priorities", module:"11. Facilities and Campus Planning", title:"What facility design priorities matter most?", type:"multi", options:[
+        {label:"Flexibility", value:"flexibility"},
+        {label:"Premium patient experience", value:"premium_experience"},
+        {label:"High-acuity capability", value:"high_acuity"},
+        {label:"Efficient throughput", value:"throughput"},
+        {label:"Future expansion", value:"future_expansion"}
+      ]},
+      { id:"design_principles", module:"11. Facilities and Campus Planning", title:"What facility design principles matter most?", type:"text"},
+      { id:"critical_adjacencies", module:"11. Facilities and Campus Planning", title:"What clinical adjacencies are most important?", type:"text"},
+      { id:"non_clinical_amenities", module:"11. Facilities and Campus Planning", title:"What non-clinical amenities are required?", type:"text"},
+      { id:"parking_access", module:"11. Facilities and Campus Planning", title:"What parking, transport, or access considerations matter most?", type:"text"},
+      { id:"sustainability_goals", module:"11. Facilities and Campus Planning", title:"What sustainability goals should be incorporated?", type:"text"},
+      { id:"facility_implications", module:"11. Facilities and Campus Planning", title:"What major facility or campus implications are already apparent?", type:"text"},
+
+      { id:"financial_objective", module:"12. Finance and Implementation", title:"What is the expected financial objective?", type:"single", options:[
+        {label:"Break-even quickly", value:"break_even"},
+        {label:"Long-term strategic investment", value:"long_term"},
+        {label:"Premium margin model", value:"premium_margin"},
+        {label:"Mixed objective", value:"mixed"}
+      ]},
+      { id:"return_expectations", module:"12. Finance and Implementation", title:"What return expectations exist by year 3 and year 5?", type:"text"},
+      { id:"capital_constraints", module:"12. Finance and Implementation", title:"What capital constraints apply?", type:"text"},
+      { id:"revenue_drivers", module:"12. Finance and Implementation", title:"What service lines or offerings are expected to be major revenue drivers?", type:"text"},
+      { id:"subsidized_services", module:"12. Finance and Implementation", title:"Which services are expected to require subsidy?", type:"text"},
+      { id:"payer_mix", module:"12. Finance and Implementation", title:"What payer mix assumptions are being used?", type:"text"},
+      { id:"ramp_up", module:"12. Finance and Implementation", title:"What ramp-up assumptions are being used?", type:"text"},
+      { id:"cost_pressures", module:"12. Finance and Implementation", title:"What cost pressures are most concerning?", type:"text"},
+      { id:"implementation_risks", module:"12. Finance and Implementation", title:"What are the biggest implementation risks?", type:"text"},
+      { id:"open_questions", module:"12. Finance and Implementation", title:"What key decisions remain unresolved?", type:"text"}
     ];
 
     const modules = [...new Set(questions.map(q => q.module))];
-
     let answers = loadAnswers();
     let currentIndex = 0;
 
@@ -1066,15 +801,12 @@
     function shouldShowQuestion(question) {
       if (!question.condition) return true;
       const dependency = answers[question.condition.questionId];
-
       if (question.condition.equals !== undefined) {
         return dependency === question.condition.equals;
       }
-
       if (question.condition.includes !== undefined) {
         return Array.isArray(dependency) && dependency.includes(question.condition.includes);
       }
-
       return true;
     }
 
@@ -1089,21 +821,18 @@
     function countAnsweredVisibleQuestions() {
       const visible = getVisibleQuestions();
       let count = 0;
-
       visible.forEach(q => {
         const value = answers[q.id];
         if (Array.isArray(value) && value.length > 0) count++;
         else if (value === true || value === false) count++;
         else if (value !== undefined && value !== null && value !== "") count++;
       });
-
       return count;
     }
 
     function showPage(page) {
       document.querySelectorAll(".page").forEach(el => el.classList.add("hidden"));
       document.getElementById(`page-${page}`).classList.remove("hidden");
-
       if (page === "questionnaire") renderQuestionnaire();
       if (page === "review") renderReview();
       if (page === "outline") renderOutline();
@@ -1117,17 +846,22 @@
 
       const html = modules.map(module => {
         const visibleInModule = getVisibleQuestionsByModule(module).length;
+        const answeredInModule = getVisibleQuestionsByModule(module).filter(q => {
+          const value = answers[q.id];
+          if (Array.isArray(value)) return value.length > 0;
+          return value === true || value === false || (value !== undefined && value !== null && value !== "");
+        }).length;
         const isActive = currentQuestion && currentQuestion.module === module;
         return `
           <button class="module-btn ${isActive ? 'active' : ''}" onclick="jumpToModule('${escapeQuotes(module)}')">
-            ${module}
-            <div class="small">${visibleInModule} visible question${visibleInModule === 1 ? '' : 's'}</div>
+            <div><strong>${module}</strong></div>
+            <div class="small">${answeredInModule} of ${visibleInModule} answered</div>
           </button>
         `;
       }).join("");
 
-      homeList.innerHTML = html;
-      moduleList.innerHTML = html;
+      if (homeList) homeList.innerHTML = html;
+      if (moduleList) moduleList.innerHTML = html;
     }
 
     function jumpToModule(module) {
@@ -1142,9 +876,7 @@
     function renderQuestionnaire() {
       const visibleQuestions = getVisibleQuestions();
 
-      if (currentIndex >= visibleQuestions.length) {
-        currentIndex = visibleQuestions.length - 1;
-      }
+      if (currentIndex >= visibleQuestions.length) currentIndex = visibleQuestions.length - 1;
       if (currentIndex < 0) currentIndex = 0;
 
       const q = visibleQuestions[currentIndex];
@@ -1161,8 +893,8 @@
         card.innerHTML = `
           <h3>Questionnaire Complete</h3>
           <p class="muted">You have completed all currently visible questions.</p>
-          <button class="btn btn-secondary" onclick="showPage('review')">Review Answers</button>
-          <button class="btn btn-primary" onclick="showPage('outline')">View Business Plan Output</button>
+          <button class="btn btn-light" onclick="showPage('review')">Review Answers</button>
+          <button class="btn btn-light" onclick="showPage('outline')">View Business Plan Output</button>
         `;
         progressText.textContent = "Complete";
         progressBar.style.width = "100%";
@@ -1174,47 +906,34 @@
       progressBar.style.width = `${((currentIndex + 1) / visibleQuestions.length) * 100}%`;
 
       let html = `
-        <div class="question-meta">
-          <div class="section-title">${q.module}</div>
-          <div class="small">${q.section}</div>
-        </div>
+        <div class="eyebrow">${q.module}</div>
+        <div class="small" style="margin-bottom:8px;">Question ID: ${q.id}</div>
         <h2>${q.title}</h2>
       `;
 
-      if (q.help) {
-        html += `<div class="helper">${q.help}</div>`;
-      }
+      if (q.help) html += `<p class="muted">${q.help}</p>`;
 
       const value = answers[q.id];
 
       if (q.type === "text") {
-        html += `
-          <textarea onchange="updateTextAnswer('${q.id}', this.value)">${value || ""}</textarea>
-        `;
+        html += `<textarea onchange="updateTextAnswer('${q.id}', this.value)">${value || ""}</textarea>`;
       }
 
       if (q.type === "number") {
-        html += `
-          <input type="number" value="${value ?? ""}" onchange="updateNumberAnswer('${q.id}', this.value)" />
-        `;
+        html += `<input type="number" value="${value ?? ""}" onchange="updateNumberAnswer('${q.id}', this.value)" />`;
       }
 
       if (q.type === "boolean") {
         html += `
-          <button class="btn ${value === true ? 'btn-primary' : 'btn-secondary'}" onclick="updateBooleanAnswer('${q.id}', true)">Yes</button>
-          <button class="btn ${value === false ? 'btn-primary' : 'btn-secondary'}" onclick="updateBooleanAnswer('${q.id}', false)">No</button>
+          <button class="btn ${value === true ? 'btn-primary' : 'btn-light'}" onclick="updateBooleanAnswer('${q.id}', true)">Yes</button>
+          <button class="btn ${value === false ? 'btn-primary' : 'btn-light'}" onclick="updateBooleanAnswer('${q.id}', false)">No</button>
         `;
       }
 
       if (q.type === "single") {
         html += q.options.map(option => `
           <label class="option">
-            <input
-              type="radio"
-              name="${q.id}"
-              ${value === option.value ? "checked" : ""}
-              onchange="updateSingleAnswer('${q.id}', '${option.value}')"
-            />
+            <input type="radio" name="${q.id}" ${value === option.value ? "checked" : ""} onchange="updateSingleAnswer('${q.id}', '${option.value}')" />
             ${option.label}
           </label>
         `).join("");
@@ -1224,22 +943,13 @@
         const selected = Array.isArray(value) ? value : [];
         html += q.options.map(option => `
           <label class="option">
-            <input
-              type="checkbox"
-              ${selected.includes(option.value) ? "checked" : ""}
-              onchange="toggleMultiAnswer('${q.id}', '${option.value}')"
-            />
+            <input type="checkbox" ${selected.includes(option.value) ? "checked" : ""} onchange="toggleMultiAnswer('${q.id}', '${option.value}')" />
             ${option.label}
           </label>
         `).join("");
       }
 
-      html += `
-        <div class="note">
-          <strong>Tip:</strong> This prototype saves your responses in your browser automatically.
-        </div>
-      `;
-
+      html += `<div class="note"><strong>Tip:</strong> Responses save automatically in your browser.</div>`;
       card.innerHTML = html;
       renderModuleLists();
     }
@@ -1352,14 +1062,17 @@
       const digital = asArray(answers.digital_capabilities);
       const quality = asArray(answers.quality_goals);
       const facilities = asArray(answers.facility_priorities);
+      const careModel = asArray(answers.care_model);
 
       pushIf(decisions, strategicPurpose, `Strategic purpose selected: ${formatValueLabel(strategicPurpose)}.`);
       pushIf(decisions, targetSegments.length, `Priority patient segments identified: ${targetSegments.map(formatValueLabel).join(", ")}.`);
       pushIf(decisions, openingServices.length, `Opening clinical platform includes: ${openingServices.map(formatValueLabel).join(", ")}.`);
       pushIf(decisions, answers.bed_count, `Opening bed count assumption: ${answers.bed_count}.`);
+      pushIf(decisions, answers.stabilized_bed_count, `Stabilized bed count assumption: ${answers.stabilized_bed_count}.`);
       pushIf(decisions, answers.physician_model, `Physician model selected: ${formatValueLabel(answers.physician_model)}.`);
       pushIf(decisions, answers.network_integration, `Network integration level selected: ${formatValueLabel(answers.network_integration)}.`);
       pushIf(decisions, answers.financial_objective, `Financial objective selected: ${formatValueLabel(answers.financial_objective)}.`);
+      pushIf(decisions, careModel.length, `Care model themes identified: ${careModel.map(formatValueLabel).join(", ")}.`);
 
       if (!strategicPurpose) open.push("The overall strategic purpose of the hospital still needs to be defined.");
       if (!targetSegments.length) open.push("Priority patient segments have not yet been clearly defined.");
@@ -1460,45 +1173,32 @@
         title: "Executive Summary",
         bullets: [
           strategySummary,
-          priorities.length
-            ? `Strategic priorities identified to date include ${priorities.map(formatValueLabel).join(", ")}.`
-            : "Strategic priorities still need to be clarified and ranked.",
-          targetSegments.length
-            ? `Priority patient segments include ${targetSegments.map(formatValueLabel).join(", ")}.`
-            : "Priority patient segments have not yet been clearly defined.",
-          openingServices.length
-            ? `The opening clinical platform currently appears to include ${openingServices.map(formatValueLabel).join(", ")}.`
-            : "The opening clinical platform remains to be defined."
+          priorities.length ? `Strategic priorities identified to date include ${priorities.map(formatValueLabel).join(", ")}.` : "Strategic priorities still need to be clarified and ranked.",
+          targetSegments.length ? `Priority patient segments include ${targetSegments.map(formatValueLabel).join(", ")}.` : "Priority patient segments have not yet been clearly defined.",
+          openingServices.length ? `The opening clinical platform currently appears to include ${openingServices.map(formatValueLabel).join(", ")}.` : "The opening clinical platform remains to be defined."
         ]
       });
 
       sections.push({
         title: "Strategic Case for the Hospital",
         bullets: [
-          asString(answers.problem_to_solve)
-            ? `The hospital is intended to address the following core challenge: ${answers.problem_to_solve}.`
-            : "The core problem this hospital is intended to solve still needs to be articulated.",
-          asString(answers.success_year_1)
-            ? `Year 1 success is currently described as: ${answers.success_year_1}.`
-            : "Year 1 success criteria have not yet been defined.",
-          asString(answers.success_year_5)
-            ? `Year 5 success is currently described as: ${answers.success_year_5}.`
-            : "Year 5 success criteria have not yet been defined."
+          asString(answers.problem_to_solve) ? `The hospital is intended to address the following core challenge: ${answers.problem_to_solve}.` : "The core problem this hospital is intended to solve still needs to be articulated.",
+          asString(answers.success_year_1) ? `Year 1 success is currently described as: ${answers.success_year_1}.` : "Year 1 success criteria have not yet been defined.",
+          asString(answers.success_year_3) ? `Year 3 success is currently described as: ${answers.success_year_3}.` : "Year 3 success criteria have not yet been defined.",
+          asString(answers.success_year_5) ? `Year 5 success is currently described as: ${answers.success_year_5}.` : "Year 5 success criteria have not yet been defined.",
+          asString(answers.non_negotiables) ? `Non-negotiable strategic priorities include: ${answers.non_negotiables}.` : "Non-negotiable strategic priorities still need to be documented."
         ]
       });
 
       sections.push({
         title: "Market Opportunity and Patient Strategy",
         bullets: [
-          asString(answers.catchment_area)
-            ? `The expected catchment area is described as: ${answers.catchment_area}.`
-            : "The primary and secondary catchment area still needs to be defined.",
-          asString(answers.unmet_needs)
-            ? `Unmet needs identified include: ${answers.unmet_needs}.`
-            : "Specific unmet needs still need to be documented.",
-          asString(answers.competitors)
-            ? `Relevant competitors or alternatives include: ${answers.competitors}.`
-            : "The competitive landscape has not yet been clearly documented.",
+          asString(answers.catchment_area) ? `The expected catchment area is described as: ${answers.catchment_area}.` : "The primary and secondary catchment area still needs to be defined.",
+          asString(answers.population_trends) ? `Relevant population trends include: ${answers.population_trends}.` : "Relevant population trends have not yet been documented.",
+          asString(answers.disease_burden) ? `Relevant disease burden trends include: ${answers.disease_burden}.` : "Relevant disease burden trends have not yet been documented.",
+          asString(answers.unmet_needs) ? `Unmet needs identified include: ${answers.unmet_needs}.` : "Specific unmet needs still need to be documented.",
+          asString(answers.patient_leakage) ? `Patient leakage patterns are described as: ${answers.patient_leakage}.` : "Patient leakage patterns have not yet been documented.",
+          asString(answers.competitors) ? `Relevant competitors or alternatives include: ${answers.competitors}.` : "The competitive landscape has not yet been clearly documented.",
           targetSegments.includes("international_patients") && asArray(answers.premium_features).length
             ? `Premium or international patient features under consideration include ${asArray(answers.premium_features).map(formatValueLabel).join(", ")}.`
             : targetSegments.includes("international_patients")
@@ -1510,152 +1210,119 @@
       sections.push({
         title: "Role Within the Vinmec Network",
         bullets: [
-          asString(answers.network_role)
-            ? `The hospital’s intended role within the broader Vinmec network is described as: ${answers.network_role}.`
-            : "The hospital’s role within the broader Vinmec network still needs to be defined.",
-          answers.network_integration
-            ? `The selected level of network integration is ${formatValueLabel(answers.network_integration)}.`
-            : "The desired level of network integration remains undefined.",
-          asString(answers.shared_services)
-            ? `Shared services or functions under consideration include: ${answers.shared_services}.`
-            : answers.network_integration === "high"
-            ? "High integration is envisioned, but the shared-service model still needs to be specified."
-            : "No specific shared-service model has yet been documented."
+          asString(answers.network_role) ? `The hospital’s intended role within the broader Vinmec network is described as: ${answers.network_role}.` : "The hospital’s role within the broader Vinmec network still needs to be defined.",
+          answers.network_integration ? `The selected level of network integration is ${formatValueLabel(answers.network_integration)}.` : "The desired level of network integration remains undefined.",
+          asString(answers.retain_vs_transfer) ? `Case retention versus transfer assumptions are described as: ${answers.retain_vs_transfer}.` : "Case retention versus transfer assumptions have not yet been defined.",
+          asString(answers.shared_services) ? `Shared services or functions under consideration include: ${answers.shared_services}.` : answers.network_integration === "high" ? "High integration is envisioned, but the shared-service model still needs to be specified." : "No specific shared-service model has yet been documented.",
+          asString(answers.support_functions) ? `Support function design assumptions include: ${answers.support_functions}.` : "The split between centralized and local support functions remains undefined."
+        ]
+      });
+
+      sections.push({
+        title: "Patient Experience and Positioning",
+        bullets: [
+          asString(answers.experience_strategy) ? `The intended differentiating patient experience is described as: ${answers.experience_strategy}.` : "The intended differentiating patient experience has not yet been clearly defined.",
+          `Differentiated service tiers: ${yesNoUnknown(answers.service_tiers)}.`,
+          asString(answers.premium_tier_model) ? `The premium or differentiated service-tier model is described as: ${answers.premium_tier_model}.` : answers.service_tiers === true ? "Differentiated service tiers are planned, but the structure remains undefined." : "No differentiated service-tier model has been specified.",
+          asString(answers.outpatient_access_model) ? `The outpatient access model is described as: ${answers.outpatient_access_model}.` : "The outpatient access model remains undefined."
         ]
       });
 
       sections.push({
         title: "Clinical Program Strategy",
         bullets: [
-          openingServices.length
-            ? `The emerging opening clinical platform appears to center on ${openingServices.map(formatValueLabel).join(", ")}.`
-            : "Opening service lines have not yet been clearly defined.",
-          answers.specialized_programs === true
-            ? "Highly specialized programs are under consideration, suggesting a potentially more ambitious maturity-state clinical model."
-            : answers.specialized_programs === false
-            ? "No highly specialized programs are currently indicated, suggesting a more focused opening scope."
-            : "The role of highly specialized programs has not yet been determined.",
-          advancedPrograms.length
-            ? `Advanced programs under consideration include ${advancedPrograms.map(formatValueLabel).join(", ")}.`
-            : "No advanced programs have yet been specified.",
-          answers.cardiology_scope
-            ? `Cardiology capability is currently envisioned at the following level: ${formatValueLabel(answers.cardiology_scope)}.`
-            : openingServices.includes("cardiology")
-            ? "Cardiology is included in the opening platform, but the intended level of capability remains undefined."
-            : "Cardiology is not currently identified as a defining opening service line.",
-          answers.oncology_scope
-            ? `Oncology capability is currently envisioned at the following level: ${formatValueLabel(answers.oncology_scope)}.`
-            : openingServices.includes("oncology")
-            ? "Oncology is included in the opening platform, but the intended level of capability remains undefined."
-            : "Oncology is not currently identified as a defining opening service line."
+          openingServices.length ? `The emerging opening clinical platform appears to center on ${openingServices.map(formatValueLabel).join(", ")}.` : "Opening service lines have not yet been clearly defined.",
+          asString(answers.future_services) ? `Services planned after opening include: ${answers.future_services}.` : "Near-term post-opening service expansion has not yet been defined.",
+          asString(answers.anchor_service_lines) ? `Strategic anchor service lines include: ${answers.anchor_service_lines}.` : "Strategic anchor service lines remain undefined.",
+          asString(answers.volume_drivers) ? `Expected volume drivers include: ${answers.volume_drivers}.` : "Expected volume drivers have not yet been defined.",
+          asString(answers.brand_builders) ? `Expected brand-building service lines include: ${answers.brand_builders}.` : "Expected brand-building service lines have not yet been defined.",
+          answers.specialized_programs === true ? "Highly specialized programs are under consideration, suggesting a potentially more ambitious maturity-state clinical model." :
+          answers.specialized_programs === false ? "No highly specialized programs are currently indicated, suggesting a more focused opening scope." :
+          "The role of highly specialized programs has not yet been determined.",
+          advancedPrograms.length ? `Advanced programs under consideration include ${advancedPrograms.map(formatValueLabel).join(", ")}.` : "No advanced programs have yet been specified.",
+          answers.cardiology_scope ? `Cardiology capability is currently envisioned at the following level: ${formatValueLabel(answers.cardiology_scope)}.` : openingServices.includes("cardiology") ? "Cardiology is included in the opening platform, but the intended level of capability remains undefined." : "Cardiology is not currently identified as a defining opening service line.",
+          answers.oncology_scope ? `Oncology capability is currently envisioned at the following level: ${formatValueLabel(answers.oncology_scope)}.` : openingServices.includes("oncology") ? "Oncology is included in the opening platform, but the intended level of capability remains undefined." : "Oncology is not currently identified as a defining opening service line."
         ]
       });
 
       sections.push({
         title: "Capacity and Growth Model",
         bullets: [
-          answers.bed_count
-            ? `The planned opening bed count is currently assumed to be ${answers.bed_count}.`
-            : "The planned opening bed count remains undefined.",
-          answers.stabilized_bed_count
-            ? `The maturity-state or stabilized bed count is currently assumed to be ${answers.stabilized_bed_count}.`
-            : "The maturity-state bed count remains undefined.",
-          answers.target_occupancy
-            ? `Target occupancy at stabilization is currently assumed to be ${answers.target_occupancy}%.`
-            : "Target occupancy assumptions have not yet been defined.",
-          answers.phased_development === true
-            ? `A phased development model is indicated. Current phasing assumptions are described as: ${asString(answers.phase_plan) || "to be defined"}.`
-            : answers.phased_development === false
-            ? "No phased development model is currently indicated."
-            : "It is not yet clear whether the hospital will be developed in phases.",
-          asString(answers.growth_assumptions)
-            ? `Key growth assumptions include: ${answers.growth_assumptions}.`
-            : "Growth assumptions over the first 3 to 5 years have not yet been documented."
+          answers.bed_count ? `The planned opening bed count is currently assumed to be ${answers.bed_count}.` : "The planned opening bed count remains undefined.",
+          answers.stabilized_bed_count ? `The maturity-state or stabilized bed count is currently assumed to be ${answers.stabilized_bed_count}.` : "The maturity-state bed count remains undefined.",
+          answers.target_occupancy ? `Target occupancy at stabilization is currently assumed to be ${answers.target_occupancy}%.` : "Target occupancy assumptions have not yet been defined.",
+          asString(answers.alos_assumptions) ? `Average length of stay assumptions are described as: ${answers.alos_assumptions}.` : "Average length of stay assumptions have not yet been defined.",
+          asString(answers.outpatient_inpatient_mix) ? `The desired outpatient-to-inpatient mix is described as: ${answers.outpatient_inpatient_mix}.` : "The desired outpatient-to-inpatient mix remains undefined.",
+          answers.phased_development === true ? `A phased development model is indicated. Current phasing assumptions are described as: ${asString(answers.phase_plan) || "to be defined"}.` :
+          answers.phased_development === false ? "No phased development model is currently indicated." :
+          "It is not yet clear whether the hospital will be developed in phases.",
+          asString(answers.growth_assumptions) ? `Key growth assumptions include: ${answers.growth_assumptions}.` : "Growth assumptions over the first 3 to 5 years have not yet been documented."
         ]
       });
 
       sections.push({
         title: "Operating Model and Workforce Strategy",
         bullets: [
-          answers.physician_model
-            ? `The intended physician model is ${formatValueLabel(answers.physician_model)}.`
-            : "The physician model remains undefined.",
-          careModel.length
-            ? `The care model appears to emphasize ${careModel.map(formatValueLabel).join(", ")}.`
-            : "The defining care model has not yet been specified.",
-          asString(answers.staffing_shortages)
-            ? `Anticipated workforce shortages or constraints include: ${answers.staffing_shortages}.`
-            : "Potential workforce shortages have not yet been clearly documented.",
-          `International recruitment requirement: ${yesNoUnknown(answers.international_recruitment)}.`,
-          asString(answers.international_recruitment_roles)
-            ? `Roles potentially requiring international recruitment include: ${answers.international_recruitment_roles}.`
-            : answers.international_recruitment === true
-            ? "International recruitment is expected, but the required roles have not yet been specified."
-            : "No specific internationally recruited roles have been identified."
+          answers.physician_model ? `The intended physician model is ${formatValueLabel(answers.physician_model)}.` : "The physician model remains undefined.",
+          careModel.length ? `The care model appears to emphasize ${careModel.map(formatValueLabel).join(", ")}.` : "The defining care model has not yet been specified.",
+          asString(answers.protocolization) ? `Protocolization expectations are described as: ${answers.protocolization}.` : "Protocolization expectations remain undefined.",
+          asString(answers.periop_model) ? `The perioperative operating model is described as: ${answers.periop_model}.` : "The perioperative operating model remains undefined.",
+          asString(answers.discharge_model) ? `The discharge planning model is described as: ${answers.discharge_model}.` : "The discharge planning model remains undefined.",
+          asString(answers.care_coordination) ? `The care coordination model is described as: ${answers.care_coordination}.` : "The care coordination model remains undefined.",
+          asString(answers.staffing_shortages) ? `Anticipated workforce shortages or constraints include: ${answers.staffing_shortages}.` : "Potential workforce shortages have not yet been clearly documented.",
+          `International recruitment requirement: ${yesNoUnknown(answers.international_recruitment)}.`
         ]
       });
 
       sections.push({
         title: "Digital and Innovation Strategy",
         bullets: [
-          digital.length
-            ? `Required launch digital capabilities include ${digital.map(formatValueLabel).join(", ")}.`
-            : "Required launch digital capabilities have not yet been defined.",
-          aiUseCases.length
-            ? `Priority AI use cases include ${aiUseCases.map(formatValueLabel).join(", ")}.`
-            : digital.includes("ai_ops")
-            ? "AI-enabled operations are in scope, but the highest-priority use cases remain undefined."
-            : "No explicit AI use case agenda has yet been identified."
+          digital.length ? `Required launch digital capabilities include ${digital.map(formatValueLabel).join(", ")}.` : "Required launch digital capabilities have not yet been defined.",
+          asString(answers.emr_strategy) ? `The EMR strategy is described as: ${answers.emr_strategy}.` : "The EMR strategy remains undefined.",
+          asString(answers.interoperability) ? `Interoperability requirements are described as: ${answers.interoperability}.` : "Interoperability requirements remain undefined.",
+          asString(answers.patient_digital_tools) ? `Patient-facing digital tools are described as: ${answers.patient_digital_tools}.` : "Patient-facing digital tools remain undefined.",
+          aiUseCases.length ? `Priority AI use cases include ${aiUseCases.map(formatValueLabel).join(", ")}.` : digital.includes("ai_ops") ? "AI-enabled operations are in scope, but the highest-priority use cases remain undefined." : "No explicit AI use case agenda has yet been identified."
         ]
       });
 
       sections.push({
         title: "Quality and Accreditation Strategy",
         bullets: [
-          quality.length
-            ? `Quality and accreditation ambitions currently include ${quality.map(formatValueLabel).join(", ")}.`
-            : "Quality and accreditation ambitions have not yet been defined.",
-          answers.jci_timing
-            ? `JCI timing is currently envisioned as ${formatValueLabel(answers.jci_timing)}.`
-            : quality.includes("jci")
-            ? "JCI is an ambition, but the timing remains undefined."
-            : "No JCI timing assumption has been identified."
+          quality.length ? `Quality and accreditation ambitions currently include ${quality.map(formatValueLabel).join(", ")}.` : "Quality and accreditation ambitions have not yet been defined.",
+          asString(answers.quality_ambition) ? `The desired quality ambition is described as: ${answers.quality_ambition}.` : "The desired quality ambition remains undefined.",
+          asString(answers.safety_culture) ? `Safety culture expectations are described as: ${answers.safety_culture}.` : "Safety culture expectations remain undefined.",
+          asString(answers.priority_outcomes) ? `Priority clinical outcomes include: ${answers.priority_outcomes}.` : "Priority clinical outcomes remain undefined.",
+          answers.jci_timing ? `JCI timing is currently envisioned as ${formatValueLabel(answers.jci_timing)}.` : quality.includes("jci") ? "JCI is an ambition, but the timing remains undefined." : "No JCI timing assumption has been identified."
         ]
       });
 
       sections.push({
         title: "Facilities and Campus Planning Implications",
         bullets: [
-          facilities.length
-            ? `Key facility design priorities include ${facilities.map(formatValueLabel).join(", ")}.`
-            : "Facility design priorities have not yet been defined.",
-          asString(answers.facility_implications)
-            ? `Additional facility implications identified to date include: ${answers.facility_implications}.`
-            : "Specific facility and campus implications still need to be documented."
+          facilities.length ? `Key facility design priorities include ${facilities.map(formatValueLabel).join(", ")}.` : "Facility design priorities have not yet been defined.",
+          asString(answers.design_principles) ? `Facility design principles are described as: ${answers.design_principles}.` : "Facility design principles remain undefined.",
+          asString(answers.critical_adjacencies) ? `Critical clinical adjacencies include: ${answers.critical_adjacencies}.` : "Critical clinical adjacencies remain undefined.",
+          asString(answers.non_clinical_amenities) ? `Required non-clinical amenities include: ${answers.non_clinical_amenities}.` : "Required non-clinical amenities remain undefined.",
+          asString(answers.facility_implications) ? `Additional facility implications identified to date include: ${answers.facility_implications}.` : "Specific facility and campus implications still need to be documented."
         ]
       });
 
       sections.push({
         title: "Financial Considerations",
         bullets: [
-          answers.financial_objective
-            ? `The selected financial objective is ${formatValueLabel(answers.financial_objective)}.`
-            : "The financial objective remains undefined.",
-          asString(answers.revenue_drivers)
-            ? `Expected revenue drivers include: ${answers.revenue_drivers}.`
-            : "Expected revenue drivers have not yet been clearly identified.",
-          asString(answers.implementation_risks)
-            ? `Implementation risks identified to date include: ${answers.implementation_risks}.`
-            : "Implementation risks have not yet been clearly documented."
+          answers.financial_objective ? `The selected financial objective is ${formatValueLabel(answers.financial_objective)}.` : "The financial objective remains undefined.",
+          asString(answers.return_expectations) ? `Return expectations are described as: ${answers.return_expectations}.` : "Return expectations remain undefined.",
+          asString(answers.capital_constraints) ? `Capital constraints are described as: ${answers.capital_constraints}.` : "Capital constraints remain undefined.",
+          asString(answers.revenue_drivers) ? `Expected revenue drivers include: ${answers.revenue_drivers}.` : "Expected revenue drivers have not yet been clearly identified.",
+          asString(answers.subsidized_services) ? `Services expected to require subsidy include: ${answers.subsidized_services}.` : "Potentially subsidized services have not yet been defined.",
+          asString(answers.implementation_risks) ? `Implementation risks identified to date include: ${answers.implementation_risks}.` : "Implementation risks have not yet been clearly documented."
         ]
       });
 
       sections.push({
         title: "Open Decisions and Recommended Next-Step Agenda",
         bullets: [
-          asString(answers.open_questions)
-            ? `Open decisions currently identified include: ${answers.open_questions}.`
-            : "A formal list of unresolved decisions still needs to be developed.",
+          asString(answers.open_questions) ? `Open decisions currently identified include: ${answers.open_questions}.` : "A formal list of unresolved decisions still needs to be developed.",
           "The next planning cycle should focus on validating market demand, refining opening scope, confirming workforce feasibility, and translating strategic choices into facility, digital, and financial implications."
         ]
       });
@@ -1665,31 +1332,16 @@
 
     function renderDecisionSummary() {
       const summary = generateDecisionSummary();
-
-      const decisionList = document.getElementById("decision-list");
-      const assumptionList = document.getElementById("assumption-list");
-      const openList = document.getElementById("open-list");
-      const nextList = document.getElementById("next-list");
-
-      decisionList.innerHTML = (summary.decisions.length ? summary.decisions : ["No key decisions captured yet."])
-        .map(item => `<li>${item}</li>`).join("");
-
-      assumptionList.innerHTML = (summary.assumptions.length ? summary.assumptions : ["No major assumptions captured yet."])
-        .map(item => `<li>${item}</li>`).join("");
-
-      openList.innerHTML = (summary.open.length ? summary.open : ["No major open questions captured yet."])
-        .map(item => `<li>${item}</li>`).join("");
-
-      nextList.innerHTML = (summary.next.length ? summary.next : ["No next steps generated yet."])
-        .map(item => `<li>${item}</li>`).join("");
+      document.getElementById("decision-list").innerHTML = (summary.decisions.length ? summary.decisions : ["No key decisions captured yet."]).map(item => `<li>${item}</li>`).join("");
+      document.getElementById("assumption-list").innerHTML = (summary.assumptions.length ? summary.assumptions : ["No major assumptions captured yet."]).map(item => `<li>${item}</li>`).join("");
+      document.getElementById("open-list").innerHTML = (summary.open.length ? summary.open : ["No major open questions captured yet."]).map(item => `<li>${item}</li>`).join("");
+      document.getElementById("next-list").innerHTML = (summary.next.length ? summary.next : ["No next steps generated yet."]).map(item => `<li>${item}</li>`).join("");
     }
 
     function renderOutline() {
       renderDecisionSummary();
-
       const container = document.getElementById("outline-content");
       const sections = buildNarrativeSections();
-
       container.innerHTML = sections.map(section => `
         <div class="outline-section">
           <h3>${section.title}</h3>
